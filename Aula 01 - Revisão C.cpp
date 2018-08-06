@@ -12,7 +12,7 @@ void Exerc4();
 void Exerc5();
 void Exerc6();
 void Exerc7();
-void Exerc8(); // Terminar
+void Exerc8();
 void Exerc9();
 float max(float *array, int sizeArray);
 float min(float *array, int sizeArray);
