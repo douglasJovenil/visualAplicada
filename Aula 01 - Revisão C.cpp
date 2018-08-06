@@ -24,18 +24,6 @@ int main() {
 	return 0;
 }
 
-void Exerc10() {
-	float array[10], acumulador = 0;
-	int i, sizeArray = sizeof(array) / sizeof(*array) - 1;
-
-	for (i = 0; i <= sizeArray; i++) {
-		cout << "Informe um valor: ";
-		cin >> array[i];
-		acumulador += array[i];
-	}
-	cout << "Media: " << acumulador / (i - 1) << endl;
-}
-
 void Exerc1() {
 	std::cout << "AUT0218 - Programacao Visual Aplicada" << std::endl;
 }
@@ -125,4 +113,16 @@ float min(float *array, int sizeArray) {
 	float minValue = numeric_limits<float>::max();
 	for (int i = 0; i <= sizeArray; i++) minValue = (array[i] < minValue) ? array[i] : minValue;
 	return minValue;
+}
+
+void Exerc10() {
+	float array[10], acumulador = 0;
+	int i, sizeArray = sizeof(array) / sizeof(*array) - 1;
+
+	for (i = 0; i <= sizeArray; i++) {
+		cout << "Informe um valor: ";
+		cin >> array[i];
+		acumulador += array[i];
+	}
+	cout << "Media: " << acumulador / (i - 1) << endl;
 }
