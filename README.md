@@ -1,4 +1,4 @@
 # visualAplicada
 
-To create project: dotnet new console -o name_of_project
-To run project: dotnet run
+To create project: dotnet new console -o name_of_project</br>
+To run project: dotnet run</br>
