@@ -1,0 +1,10 @@
+cidade_1; 121321
+cidade_2; 230219321
+cidade_3; 213123
+cidade_4; 123
+cidade_5; 212138921321
+cidade_6; 32
+cidade_7; 12321
+cidade_8; 3
+cidade_9; 999
+cidade_10; 123213

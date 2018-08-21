@@ -1,0 +1,11 @@
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\bin\Debug\netcoreapp2.1\Aula_3_Arquivos.deps.json
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\bin\Debug\netcoreapp2.1\Aula_3_Arquivos.runtimeconfig.json
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\bin\Debug\netcoreapp2.1\Aula_3_Arquivos.runtimeconfig.dev.json
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\bin\Debug\netcoreapp2.1\Aula_3_Arquivos.dll
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\bin\Debug\netcoreapp2.1\Aula_3_Arquivos.pdb
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\obj\Debug\netcoreapp2.1\Aula_3_Arquivos.csprojAssemblyReference.cache
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\obj\Debug\netcoreapp2.1\Aula_3_Arquivos.csproj.CoreCompileInputs.cache
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\obj\Debug\netcoreapp2.1\Aula_3_Arquivos.AssemblyInfoInputs.cache
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\obj\Debug\netcoreapp2.1\Aula_3_Arquivos.AssemblyInfo.cs
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\obj\Debug\netcoreapp2.1\Aula_3_Arquivos.dll
+C:\Users\Douglas\Desktop\visualAplicada\Aula_3_Arquivos\obj\Debug\netcoreapp2.1\Aula_3_Arquivos.pdb
