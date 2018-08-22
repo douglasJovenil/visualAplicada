@@ -1,0 +1,5 @@
+produto1; 13,21;
+produto2; 32,43;
+produto3; 64,32;
+produto4; 75,43;
+produto5; 12,45;

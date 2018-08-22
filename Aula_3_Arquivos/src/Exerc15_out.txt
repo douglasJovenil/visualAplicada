@@ -1,0 +1,5 @@
+Nome: douglas 	 Idade: 22 	 Condicao: Maior de idade
+Nome: joao 	 Idade: 38 	 Condicao: Maior de idade
+Nome: xablau 	 Idade: 18 	 Condicao: Entrando na maior idade
+Nome: jubileu 	 Idade: 13 	 Condicao: Menor de idade
+Nome: TroleiVc 	 Idade: 8 	 Condicao: Menor de idade
