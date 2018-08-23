@@ -1,6 +1,6 @@
 ﻿namespace Trabalho_1_DeteccaoCarga
 {
-    partial class Form1
+    partial class Form_Main
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -35,7 +35,11 @@
             this.processarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox_pathFile = new System.Windows.Forms.TextBox();
             this.button_changeFileName = new System.Windows.Forms.Button();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.statusMessageMain_toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.readingFile_progressBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip_Arquivo.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip_Arquivo
@@ -96,20 +100,52 @@
             this.button_changeFileName.UseVisualStyleBackColor = true;
             this.button_changeFileName.Click += new System.EventHandler(this.button_changeFileName_Click);
             // 
-            // Form1
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusMessageMain_toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 157);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(460, 22);
+            this.statusStrip.TabIndex = 3;
+            // 
+            // statusMessageMain_toolStripStatusLabel
+            // 
+            this.statusMessageMain_toolStripStatusLabel.Name = "statusMessageMain_toolStripStatusLabel";
+            this.statusMessageMain_toolStripStatusLabel.Size = new System.Drawing.Size(178, 17);
+            this.statusMessageMain_toolStripStatusLabel.Text = "Aguardando leitura do arquivo...";
+            this.statusMessageMain_toolStripStatusLabel.Click += new System.EventHandler(this.statusMessageMain_toolStripStatusLabel_Click);
+            // 
+            // readingFile_progressBar
+            // 
+            this.readingFile_progressBar.Location = new System.Drawing.Point(94, 157);
+            this.readingFile_progressBar.Name = "readingFile_progressBar";
+            this.readingFile_progressBar.Size = new System.Drawing.Size(200, 23);
+            this.readingFile_progressBar.TabIndex = 4;
+            this.readingFile_progressBar.Visible = false;
+            this.readingFile_progressBar.Click += new System.EventHandler(this.readingFile_progressBar_Click);
+            // 
+            // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 179);
+            this.Controls.Add(this.readingFile_progressBar);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.button_changeFileName);
             this.Controls.Add(this.textBox_pathFile);
             this.Controls.Add(this.menuStrip_Arquivo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip_Arquivo;
-            this.Name = "Form1";
+            this.MaximizeBox = false;
+            this.Name = "Form_Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sensor de Carga";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip_Arquivo.ResumeLayout(false);
             this.menuStrip_Arquivo.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,6 +160,9 @@
         private System.Windows.Forms.ToolStripMenuItem processarToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox_pathFile;
         private System.Windows.Forms.Button button_changeFileName;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel statusMessageMain_toolStripStatusLabel;
+        private System.Windows.Forms.ProgressBar readingFile_progressBar;
     }
 }
 

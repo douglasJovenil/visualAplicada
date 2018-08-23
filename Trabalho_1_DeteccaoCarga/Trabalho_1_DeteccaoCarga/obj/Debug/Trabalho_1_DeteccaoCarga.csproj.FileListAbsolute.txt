@@ -8,3 +8,12 @@ C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_
 C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.exe
 C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.pdb
 C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.csprojAssemblyReference.cache
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\bin\Debug\Trabalho_1_DeteccaoCarga.exe.config
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.pdb
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\bin\Debug\Trabalho_1_DeteccaoCarga.exe
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\bin\Debug\Trabalho_1_DeteccaoCarga.pdb
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.Properties.Resources.resources
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.csproj.GenerateResource.Cache
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.exe
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.Form_Main.resources
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\obj\Debug\Trabalho_1_DeteccaoCarga.csprojResolveAssemblyReference.cache

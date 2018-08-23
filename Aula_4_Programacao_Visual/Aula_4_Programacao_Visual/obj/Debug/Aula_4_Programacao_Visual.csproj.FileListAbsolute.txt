@@ -8,3 +8,12 @@ C:\Users\djcsantos\Downloads\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Pro
 C:\Users\djcsantos\Downloads\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.csproj.CoreCompileInputs.cache
 C:\Users\djcsantos\Downloads\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.exe
 C:\Users\djcsantos\Downloads\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.pdb
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\bin\Debug\Aula_4_Programacao_Visual.exe.config
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.pdb
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\bin\Debug\Aula_4_Programacao_Visual.exe
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\bin\Debug\Aula_4_Programacao_Visual.pdb
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.csprojResolveAssemblyReference.cache
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.Form1.resources
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.Properties.Resources.resources
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.csproj.GenerateResource.Cache
+C:\Users\Douglas\Desktop\visualAplicada\Aula_4_Programacao_Visual\Aula_4_Programacao_Visual\obj\Debug\Aula_4_Programacao_Visual.exe
