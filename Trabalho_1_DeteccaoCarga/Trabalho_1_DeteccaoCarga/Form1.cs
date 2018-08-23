@@ -26,8 +26,7 @@ namespace Trabalho_1_DeteccaoCarga
         private void carregarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog carregar_OpenFileDialog = new OpenFileDialog();
-            carregar_OpenFileDialog.InitialDirectory = @"C:\Users\Douglas\Desktop\visualAplicada\" + 
-                                                       @"Trabalho_1_DeteccaoCarga\Trabalho_1_DeteccaoCarga\src";
+            carregar_OpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory().Replace(@"\bin\Debug", @"\src");
             carregar_OpenFileDialog.RestoreDirectory = true;
             carregar_OpenFileDialog.Title = "Carregar Arquivo";
             carregar_OpenFileDialog.Filter= "Células Texto (*.txt)|*.txt|" +
@@ -61,13 +60,17 @@ namespace Trabalho_1_DeteccaoCarga
             string[] values;
             string line;
             int i;
+            int[] test;
 
             try
             {
                 file = new StreamReader(file_path);
                 times = new List<double>();
                 samples = new List<float>();
+                // Console.WriteLine(file.ReadToEnd().Count("\n"));
+                Console.WriteLine(file.ReadLine());
                 
+
                 while ((line = file.ReadLine()) != null)
                 {
                     values = line.Split('\t');
