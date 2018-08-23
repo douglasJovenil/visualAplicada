@@ -27,7 +27,6 @@ namespace Trabalho_1_DeteccaoCarga
         {
             OpenFileDialog carregar_OpenFileDialog = new OpenFileDialog();
             carregar_OpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory().Replace(@"\bin\Debug", @"\src");
-            carregar_OpenFileDialog.RestoreDirectory = true;
             carregar_OpenFileDialog.Title = "Carregar Arquivo";
             carregar_OpenFileDialog.Filter= "Células Texto (*.txt)|*.txt|" +
                                             "Células Binário (*.bin)|*.bin|" +
@@ -35,73 +34,88 @@ namespace Trabalho_1_DeteccaoCarga
             carregar_OpenFileDialog.DefaultExt = "txt";
             carregar_OpenFileDialog.CheckFileExists = true;
             carregar_OpenFileDialog.CheckPathExists = true;
-            // carregar_OpenFileDialog.Multiselect = true;
+            List<double> times = new List<double>();
+            List<List<float>> samples = new List<List<float>>();
+            Tuple<List<double>, List<List<float>>> data = Tuple.Create(new List<double>(), new List<List<float>>());
 
-
-            if(carregar_OpenFileDialog.ShowDialog() == DialogResult.OK)
+            if (carregar_OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
                 file_path = carregar_OpenFileDialog.FileName;
                 file_name = carregar_OpenFileDialog.SafeFileName;
                 textBox_pathFile.Text = file_name;
-                getDataFromTXT();
-                statusMessageMain_toolStripStatusLabel.Text = "Processando...";
-                readingFile_progressBar.Visible = true;
-               
+                changeFooter(statusMessageMain_toolStripStatusLabel, readingFile_progressBar, "Processando...", true);
+                getDataFromTXT(readingFile_progressBar);
+                data = getDataFromTXT(readingFile_progressBar);
+                times = data.Item1;
+                samples = data.Item2;
             }
-            
+
+            /* if (times[0] != -1)
+            {
+                changeFooter(statusMessageMain_toolStripStatusLabel, readingFile_progressBar, "Arquivos processados...", false);
+            } */
+
+
         }
 
-        private void getDataFromTXT()
+        private void changeFooter(ToolStripStatusLabel statusLabel, ProgressBar progressBar, string textLabel, Boolean visibilyProgress)
         {
-            List<float> samples;
+            statusLabel.Text = textLabel;
+            progressBar.Visible = visibilyProgress;
+        }
+
+        private Tuple< List<double>, List<List<float>> > getDataFromTXT(ProgressBar readingFile_progressBar)
+        {
+            List<List<float>> samples;
             List<double> times;
+            List<float> samples_row;
             float tmp_sum_samples;
             StreamReader file;
             string[] values;
             string line;
-            int i;
-            int[] test;
+            int column, quantity_chars, increase_progressBar;
 
             try
             {
                 file = new StreamReader(file_path);
                 times = new List<double>();
-                samples = new List<float>();
-                // Console.WriteLine(file.ReadToEnd().Count("\n"));
-                Console.WriteLine(file.ReadLine());
-                
+                samples = new List<List<float>>();
+                quantity_chars = file.ReadToEnd().Length;
+                increase_progressBar = (quantity_chars / 100);
 
+                
                 while ((line = file.ReadLine()) != null)
                 {
+                    samples_row = new List<float>();
                     values = line.Split('\t');
                     tmp_sum_samples = 0;
-                    i = 0;
+                    column = 0;
 
                     foreach (string value in values)
                     {                        
-                        if (i == 0)
+                        if (column == 0)
                         {
                             times.Add(Double.Parse(value));
                         }
-                        else if (i != 1)
+                        else if (column != 1)
                         {
-                            samples.Add(float.Parse(value));
+                            samples_row.Add(float.Parse(value));
                             tmp_sum_samples += float.Parse(value);
-                            samples.Add(tmp_sum_samples);
                         }
-                        i++;
+                        column++;
+                        readingFile_progressBar.Increment(increase_progressBar); // stopped here
                     }
 
-                    foreach (float sample in samples)
-                    {
-                        Console.WriteLine(sample);
-                    }
+                    samples_row.Add(tmp_sum_samples);
+                    samples.Add(samples_row);
                 }
 
+                return Tuple.Create(times, samples);
 
             } catch (Exception e) {
                 Console.WriteLine("Problemas ao ler o arquivo!");
                 Console.WriteLine($"Exceção: {e}");
+                return Tuple.Create(new List<double>{-1}, new List<List<float>>());
             }
         }
 
