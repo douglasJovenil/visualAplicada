@@ -16,7 +16,9 @@ namespace Trabalho_1_DeteccaoCarga
         private Boolean state_button_chageFileName;
         private String file_name;
         private String file_path;
-        
+        private List<List<float>> samples;
+        private List<double> times;
+
         public Form_Main()
         {
             state_button_chageFileName = false;
@@ -44,19 +46,24 @@ namespace Trabalho_1_DeteccaoCarga
                 file_name = carregar_OpenFileDialog.SafeFileName;
                 textBox_pathFile.Text = file_name;
                 changeFooter(statusMessageMain_toolStripStatusLabel, readingFile_progressBar, "Processando...", true);
-                getDataFromTXT(readingFile_progressBar);
                 data = getDataFromTXT(readingFile_progressBar);
                 times = data.Item1;
                 samples = data.Item2;
             }
 
-            /* if (times[0] != -1)
-            {
-                changeFooter(statusMessageMain_toolStripStatusLabel, readingFile_progressBar, "Arquivos processados...", false);
-            } */
+            MessageBox.Show("Dados Carregados com Sucesso!", "Sensor de Carga");
+            changeFooter(statusMessageMain_toolStripStatusLabel, readingFile_progressBar, "Arquivos processados...", false);
+        }
 
+        private void processarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            float[] selected_samples = new float[2];
+            Random random = new Random();
+
+            for (int i = 0; i < selected_samples.Length; i++) selected_samples[i] = samples[random.Next(0, samples.Count)].Last(); // here
 
         }
+
 
         private void changeFooter(ToolStripStatusLabel statusLabel, ProgressBar progressBar, string textLabel, Boolean visibilyProgress)
         {
@@ -66,8 +73,6 @@ namespace Trabalho_1_DeteccaoCarga
 
         private Tuple< List<double>, List<List<float>> > getDataFromTXT(ProgressBar readingFile_progressBar)
         {
-            List<List<float>> samples;
-            List<double> times;
             List<float> samples_row;
             float tmp_sum_samples;
             StreamReader file;
@@ -82,8 +87,8 @@ namespace Trabalho_1_DeteccaoCarga
                 samples = new List<List<float>>();
                 quantity_chars = file.ReadToEnd().Length;
                 increase_progressBar = (quantity_chars / 100);
+                file.BaseStream.Position = 0;
 
-                
                 while ((line = file.ReadLine()) != null)
                 {
                     samples_row = new List<float>();
@@ -103,9 +108,8 @@ namespace Trabalho_1_DeteccaoCarga
                             tmp_sum_samples += float.Parse(value);
                         }
                         column++;
-                        readingFile_progressBar.Increment(increase_progressBar); // stopped here
+                        readingFile_progressBar.Increment(increase_progressBar);
                     }
-
                     samples_row.Add(tmp_sum_samples);
                     samples.Add(samples_row);
                 }
@@ -115,7 +119,7 @@ namespace Trabalho_1_DeteccaoCarga
             } catch (Exception e) {
                 Console.WriteLine("Problemas ao ler o arquivo!");
                 Console.WriteLine($"Exceção: {e}");
-                return Tuple.Create(new List<double>{-1}, new List<List<float>>());
+                return Tuple.Create(new List<double>(), new List<List<float>>());
             }
         }
 

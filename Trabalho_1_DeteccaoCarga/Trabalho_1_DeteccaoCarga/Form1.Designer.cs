@@ -81,6 +81,7 @@
             this.processarToolStripMenuItem.Name = "processarToolStripMenuItem";
             this.processarToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.processarToolStripMenuItem.Text = "Processar";
+            this.processarToolStripMenuItem.Click += new System.EventHandler(this.processarToolStripMenuItem_Click);
             // 
             // textBox_pathFile
             // 
