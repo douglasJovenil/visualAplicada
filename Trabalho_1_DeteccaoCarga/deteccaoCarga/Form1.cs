@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.IO;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using Bunifu.Framework.UI;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.IO;
+using System;
 
 namespace deteccaoCarga
 {
@@ -16,31 +13,152 @@ namespace deteccaoCarga
         private int MainFormPositionX;
         private int MainFormPositionY;
         private bool MainMoveForm;
-        private bool MainFormExpanded;
         private bool MainDataLoaded;
-        private String file_name;
-        private String file_path;
         private List<List<float>> samples;
         private List<double> times;
-
+        private Color darkGreyColor;
+        private Color darkBlueColor;
+        private Color whiteColor;
+        private Color blueColor;
+        private Color greyColor;
+        private Color redColor;
+        
         public Main()
         {
-            MainFormPositionX = Width / 2;
+            darkBlueColor = Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(182)))));
+            darkGreyColor = Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            whiteColor = Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            blueColor = Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(119)))), ((int)(((byte)(189)))));
+            greyColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            redColor = Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(18)))), ((int)(((byte)(37)))));
             MainFormPositionY = Height / 2;
-            MainMoveForm = false;
-            MainFormExpanded = false;
+            MainFormPositionX = Width / 2;
+            samples = new List<List<float>>();
+            times = new List<double>();
             MainDataLoaded = false;
+            MainMoveForm = false;
             InitializeComponent();
-            
         }
-
 
         private void MainButtonClose_Click(object sender, EventArgs e)
         {
             ActiveForm.Close();
         }
 
-       private void MainPanelTop_MouseDown(object sender, MouseEventArgs e)
+        private void MainButtonAbrir_Click(object sender, EventArgs e)
+        {
+            Tuple<List<double>, List<List<float>>> data;
+            OpenFileDialog chargeOpenFileDialog;
+            String[] MainDataGridColumns;
+            List<List<float>> samples;
+            List<double> times;
+            String file_name;
+            String file_path;
+
+            chargeOpenFileDialog = CreateOpenFileDialog();
+            MoveMainButtonIndicator(MainLabelAbrir);
+
+            if (chargeOpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                data = Tuple.Create(new List<double>(), new List<List<float>>());
+                file_name = chargeOpenFileDialog.SafeFileName;
+                file_path = chargeOpenFileDialog.FileName;
+                MainDataGridColumns = new String[] { "Hora", "Amostra 1", "Amostra 2", "Amostra 3",
+                                                     "Amostra 4", "Amostra 5", "Soma das Amostras" };
+
+                ChangeFooter(MainStatusBar, MainProgressBar, "Processando...", true);
+                data = getDataFromTXT(MainProgressBar, file_path);
+                times = data.Item1;
+                samples = data.Item2;
+                MessageBox.Show("Dados Carregados com Sucesso!", "Sensor de Carga");
+                ChangeFooter(MainStatusBar, MainProgressBar, "Dados carregados...", false);
+                MainDataLoaded = true;
+                MainLabelProgramName.Text += $" - {file_name}";
+                PopulateGrid(MainDataGrid, MainDataGridColumns);
+            }
+        }
+
+        private void MainButtonProcessar_Click(object sender, EventArgs e)
+        {
+            float[] selected_samples;
+            Random random;
+
+            if (MainDataLoaded)
+            {
+                MoveMainButtonIndicator(MainLabelProcessar);
+                selected_samples = new float[2];
+                random = new Random();
+
+                for (int i = 0; i < selected_samples.Length; i++) selected_samples[i] = samples[random.Next(0, samples.Count)].Last();
+            }
+            else
+            {
+                MessageBox.Show("Você deve carregar os dados!", "Sensor de Carga");
+            }
+
+
+        }
+
+        private void MainButtonSair_Click(object sender, EventArgs e)
+        {
+            MoveMainButtonIndicator(MainLabelSair);
+            ActiveForm.Close();
+        }
+
+        private void MainButtonExit_Click(object sender, EventArgs e)
+        {
+            ActiveForm.Close();
+        }
+
+        private void MainButtonMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void MainButtonMinimize_MouseHover(object sender, EventArgs e)
+        {
+            MainButtonMinimize.BackColor = greyColor;
+        }
+
+        private void MainButtonMinimize_MouseLeave(object sender, EventArgs e)
+        {
+            MainButtonMinimize.BackColor = darkGreyColor;
+        }
+
+        private void MainButtonExpandCompress_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void MainButtonExpandCompress_MouseHover(object sender, EventArgs e)
+        {
+            MainButtonExpandCompress.BackColor = greyColor;
+        }
+
+        private void MainButtonExpandCompress_MouseLeave(object sender, EventArgs e)
+        {
+            MainButtonExpandCompress.BackColor = darkGreyColor;
+        }
+
+        private void MainButtonExit_MouseHover(object sender, EventArgs e)
+        {
+            MainButtonExit.BackColor = redColor;
+        }
+
+        private void MainButtonExit_MouseLeave(object sender, EventArgs e)
+        {
+            this.MainButtonExit.BackColor = darkGreyColor;
+
+        }
+
+        private void MainPanelTop_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -63,63 +181,7 @@ namespace deteccaoCarga
             }
         }
 
-        private void MainButtonAbrir_Click(object sender, EventArgs e)
-        {
-            MainButtonIndicator.Location = new Point(MainButtonIndicator.Location.X, MainLabelAbrir.Location.Y + 6);
-            OpenFileDialog carregar_OpenFileDialog = new OpenFileDialog();
-            carregar_OpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory().Replace(@"\bin\Debug", @"\src");
-            carregar_OpenFileDialog.Title = "Carregar Arquivo";
-            carregar_OpenFileDialog.Filter = "Células Texto (*.txt)|*.txt|" +
-                                            "Células Binário (*.bin)|*.bin|" +
-                                            "Todos os Arquivos (*.*)|*.*";
-            carregar_OpenFileDialog.DefaultExt = "txt";
-            carregar_OpenFileDialog.CheckFileExists = true;
-            carregar_OpenFileDialog.CheckPathExists = true;
-            List<double> times = new List<double>();
-            List<List<float>> samples = new List<List<float>>();
-            Tuple<List<double>, List<List<float>>> data = Tuple.Create(new List<double>(), new List<List<float>>());
-            String[] MainDataGridColumns;
-
-            if (carregar_OpenFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                file_path = carregar_OpenFileDialog.FileName;
-                file_name = carregar_OpenFileDialog.SafeFileName;
-                changeFooter(MainStatusBar, MainProgressBar, "Processando...", true);
-                data = getDataFromTXT(MainProgressBar);
-                times = data.Item1;
-                samples = data.Item2;
-                MessageBox.Show("Dados Carregados com Sucesso!", "Sensor de Carga");
-                changeFooter(MainStatusBar, MainProgressBar, "Dados carregados...", false);
-                MainDataLoaded = true;
-                MainLabelProgramName.Text += $" - {file_name}";
-                MainDataGridColumns = new String[] { "Hora", "Amostra 1", "Amostra 2", "Amostra 3", "Amostra 4", "Amostra 5", "Soma das Amostras" };
-
-                foreach (String columnName in MainDataGridColumns)
-                {
-                    MainDataGrid.Columns.Add(columnName, columnName);
-                }
-
-                for (int i = 0; i < samples.Count; i++)
-                {
-                    MainDataGrid.Rows.Add(times[i], samples[i][0], samples[i][1], samples[i][2], samples[i][3], samples[i][4], samples[i][5]);
-                }
-
-                foreach (DataGridViewRow row in MainDataGrid.Rows)
-                {
-                    row.HeaderCell.Value = (row.Index + 1).ToString();
-                }
-
-            }
-        }
-
-
-        private void changeFooter(Label statusLabel, Bunifu.Framework.UI.BunifuProgressBar progressBar, string textLabel, Boolean visibilyProgress)
-        {
-            statusLabel.Text = textLabel;
-            progressBar.Visible = visibilyProgress;
-        }
-
-        private Tuple<List<double>, List<List<float>>> getDataFromTXT(Bunifu.Framework.UI.BunifuProgressBar readingFile_progressBar)
+        private Tuple<List<double>, List<List<float>>> getDataFromTXT(BunifuProgressBar readingFile_progressBar, string file_path)
         {
             List<float> samples_row;
             float tmp_sum_samples;
@@ -135,8 +197,6 @@ namespace deteccaoCarga
                 samples = new List<List<float>>();
                 step_progressBar = (int)Math.Ceiling((float)(100 / (file.ReadToEnd().Split('\n').Length)));
                 file.BaseStream.Position = 0;
-
-                Console.WriteLine(step_progressBar);
 
                 while ((line = file.ReadLine()) != null)
                 {
@@ -174,82 +234,46 @@ namespace deteccaoCarga
             }
         }
 
-        private void MainButtonProcessar_Click(object sender, EventArgs e)
+        private OpenFileDialog CreateOpenFileDialog()
         {
-            float[] selected_samples;
-            Random random;
+            OpenFileDialog auxOpenFileDialog = new OpenFileDialog();
+            auxOpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory().Replace(@"\bin\Debug", @"\src");
+            auxOpenFileDialog.Title = "Carregar Arquivo";
+            auxOpenFileDialog.DefaultExt = "txt";
+            auxOpenFileDialog.Filter = "Células Texto (*.txt)|*.txt|" +
+                                       "Células Binário (*.bin)|*.bin|" +
+                                       "Todos os Arquivos (*.*)|*.*";
+            return auxOpenFileDialog;
+        }
 
-            if (MainDataLoaded)
+        private void PopulateGrid(BunifuCustomDataGrid dataGrid, String[] gridColumns)
+        {
+            foreach (String columnName in gridColumns)
             {
-                MainButtonIndicator.Location = new Point(MainButtonIndicator.Location.X, MainLabelProcessar.Location.Y + 6);
-                selected_samples = new float[2];
-                random = new Random();
-
-                for (int i = 0; i < selected_samples.Length; i++) selected_samples[i] = samples[random.Next(0, samples.Count)].Last();
-            } else
-            {
-                MessageBox.Show("Você deve carregar os dados!", "Sensor de Carga");
+                dataGrid.Columns.Add(columnName, columnName);
             }
 
-
-        }
-
-        private void MainButtonSair_Click(object sender, EventArgs e)
-        {
-            MainButtonIndicator.Location = new Point(MainButtonIndicator.Location.X, MainLabelSair.Location.Y + 6);
-            ActiveForm.Close();
-        }
-
-        private void MainProgressBar_progressChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MainButtonExit_Click(object sender, EventArgs e)
-        {
-            ActiveForm.Close();
-        }
-
-        private void MainButtonExit_MouseHover(object sender, EventArgs e)
-        {
-            MainButtonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(18)))), ((int)(((byte)(37)))));
-        }
-
-        private void MainButtonExit_MouseLeave(object sender, EventArgs e)
-        {
-            this.MainButtonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-
-        }
-
-        private void MainMinimizeButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void MainExpandCompressButton_Click(object sender, EventArgs e)
-        {
-
-            if (WindowState == FormWindowState.Normal && !MainFormExpanded)
+            for (int i = 0; i < samples.Count; i++)
             {
-                WindowState = FormWindowState.Maximized;
-                MainFormExpanded = true;
-            }
-            else
-            {
-                WindowState = FormWindowState.Normal;
-                MainFormExpanded = false;
+                dataGrid.Rows.Add(times[i], samples[i][0], samples[i][1], samples[i][2], samples[i][3], samples[i][4], samples[i][5]);
             }
 
+            foreach (DataGridViewRow row in dataGrid.Rows)
+            {
+                row.HeaderCell.Value = (row.Index + 1).ToString();
+            }
         }
 
-        private void MainButtonSair_Click_1(object sender, EventArgs e)
+        private void MoveMainButtonIndicator(BunifuCustomLabel referenceLabel)
         {
-
+            MainButtonIndicator.Location = new Point(MainButtonIndicator.Location.X, referenceLabel.Location.Y + 6);
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ChangeFooter(Label statusLabel, BunifuProgressBar progressBar, string textLabel, Boolean visibilyProgress)
         {
-
+            statusLabel.Text = textLabel;
+            progressBar.Visible = visibilyProgress;
         }
+
     }
 }
