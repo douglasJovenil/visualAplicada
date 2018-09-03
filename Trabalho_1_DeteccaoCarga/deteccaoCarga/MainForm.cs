@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Bunifu.Framework.UI;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Data;
 using System.IO;
 using System;
-
-using System.Data.SQLite;
 
 namespace deteccaoCarga
 {
@@ -34,6 +32,7 @@ namespace deteccaoCarga
             MainFormPositionX = Width / 2;
             MainMoveForm = false;
             InitializeComponent();
+            PopulateGrid(MainDataGrid);
         }
 
         private void MainButtonClose_Click(object sender, EventArgs e)
@@ -45,14 +44,12 @@ namespace deteccaoCarga
         {
             MoveMainButtonIndicator(MainButtonAbrir);   
             ChangeFooter(MainLabelStatusBar, MainProgressBarStatus, "Processando...", true);
-            PopulateGrid(MainTextboxAmostra_3);
-            MessageBox.Show("Dados Carregados com Sucesso!", "Sensor de Carga");
+            PopulateGrid(MainDataGrid);
+            //MessageBox.Show("Dados Carregados com Sucesso!", "Sensor de Carga");
             ChangeFooter(MainLabelStatusBar, MainProgressBarStatus, "Dados carregados...", false);
-            MainPanelScrollBottomDataGrid.Visible = true;
-            MainPanelScrollLeftDataGrid.Visible = true;
         }
 
-        private void PopulateGrid(BunifuCustomDataGrid dataGrid)
+        public void PopulateGrid(BunifuCustomDataGrid dataGrid)
         {
             using (SQLiteConnection connector = new SQLiteConnection($"Data Source={getSrcPath()}\\database.db; Version=3"))
             {
@@ -63,45 +60,10 @@ namespace deteccaoCarga
                 using (DataTable dataTable = new DataTable())
                 {
                     data.Fill(dataTable);
-                    MainTextboxAmostra_3.DataSource = dataTable;
+                    dataGrid.DataSource = dataTable;
                 }
             }
         }
-
-        /*private void MainButtonAbrir_Click(object sender, EventArgs e)
-        {
-            Tuple<List<double>, List<List<float>>> data;
-            OpenFileDialog chargeOpenFileDialog;
-            String[] MainDataGridColumns;
-            List<List<float>> samples;
-            List<double> times;
-            String file_name;
-            String file_path;
-
-            chargeOpenFileDialog = CreateOpenFileDialog();
-            MoveMainButtonIndicator(MainButtonAbrir);
-
-            if (chargeOpenFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                data = Tuple.Create(new List<double>(), new List<List<float>>());
-                file_name = chargeOpenFileDialog.SafeFileName;
-                file_path = chargeOpenFileDialog.FileName;
-                MainDataGridColumns = new String[] { "Hora", "Amostra 1", "Amostra 2", "Amostra 3",
-                                                     "Amostra 4", "Amostra 5", "Soma das Amostras" };
-
-                ChangeFooter(MainLabelStatusBar, MainProgressBarStatus, "Processando...", true);
-                data = getDataFromTXT(MainProgressBarStatus, file_path);
-                times = data.Item1;
-                samples = data.Item2;
-                MessageBox.Show("Dados Carregados com Sucesso!", "Sensor de Carga");
-                ChangeFooter(MainLabelStatusBar, MainProgressBarStatus, "Dados carregados...", false);
-                MainLabelProgramName.Text += $" - {file_name}";
-                PopulateGrid(MainDataGrid, MainDataGridColumns);
-                MainPanelScrollBottomDataGrid.Visible = true;
-                MainPanelScrollLeftDataGrid.Visible = true;
-                MainDataLoaded = true;
-            }
-        }*/
 
         private void MainButtonProcessar_Click(object sender, EventArgs e)
         {
@@ -204,59 +166,6 @@ namespace deteccaoCarga
             }
         }
 
-        /*private Tuple<List<double>, List<List<float>>> getDataFromTXT(BunifuProgressBar readingFile_progressBar, string file_path)
-        {
-            List<float> samples_row;
-            float tmp_sum_samples;
-            StreamReader file;
-            string[] values;
-            string line;
-            int column, step_progressBar;
-
-            try
-            {
-                file = new StreamReader(file_path);
-                times = new List<double>();
-                samples = new List<List<float>>();
-                step_progressBar = (int)Math.Ceiling((float)(100 / (file.ReadToEnd().Split('\n').Length)));
-                file.BaseStream.Position = 0;
-
-                while ((line = file.ReadLine()) != null)
-                {
-                    samples_row = new List<float>();
-                    values = line.Split('\t');
-                    tmp_sum_samples = 0;
-                    column = 0;
-
-                    foreach (string value in values)
-                    {
-                        if (column == 0)
-                        {
-                            times.Add(Double.Parse(value));
-                        }
-                        else if (column != 1)
-                        {
-                            samples_row.Add(float.Parse(value));
-                            tmp_sum_samples += float.Parse(value);
-                        }
-                        column++;
-                    }
-                    readingFile_progressBar.Value += step_progressBar;
-                    samples_row.Add(tmp_sum_samples);
-                    samples.Add(samples_row);
-                }
-                readingFile_progressBar.Value += 100 - readingFile_progressBar.Value;
-                return Tuple.Create(times, samples);
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Problemas ao ler o arquivo!");
-                Console.WriteLine($"Exceção: {e}");
-                return Tuple.Create(new List<double>(), new List<List<float>>());
-            }
-        }*/
-
         private OpenFileDialog CreateOpenFileDialog()
         {
             OpenFileDialog auxOpenFileDialog = new OpenFileDialog();
@@ -287,12 +196,16 @@ namespace deteccaoCarga
 
         private void MainButtonAdicionar_Click(object sender, EventArgs e)
         {
+            AddForm addForm = new AddForm();
             MoveMainButtonIndicator(MainButtonAdicionar);
+            addForm.Show();
         }
 
         private void MainButtonRemover_Click(object sender, EventArgs e)
         {
+            RemoveForm removeForm = new RemoveForm();
             MoveMainButtonIndicator(MainButtonRemover);
+            removeForm.Show();
         }
     }
 }

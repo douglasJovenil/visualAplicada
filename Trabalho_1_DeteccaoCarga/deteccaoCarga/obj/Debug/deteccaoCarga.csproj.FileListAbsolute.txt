@@ -82,3 +82,5 @@ C:\Users\Douglas\Desktop\visualAplicadaModificado\Trabalho_1_DeteccaoCarga\detec
 C:\Users\Douglas\Desktop\visualAplicadaModificado\Trabalho_1_DeteccaoCarga\deteccaoCarga\bin\Debug\EntityFramework.xml
 C:\Users\Douglas\Desktop\visualAplicadaModificado\Trabalho_1_DeteccaoCarga\deteccaoCarga\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Douglas\Desktop\visualAplicadaModificado\Trabalho_1_DeteccaoCarga\deteccaoCarga\bin\Debug\System.Data.SQLite.xml
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\deteccaoCarga\obj\Debug\deteccaoCarga.AddForm.resources
+C:\Users\Douglas\Desktop\visualAplicada\Trabalho_1_DeteccaoCarga\deteccaoCarga\obj\Debug\deteccaoCarga.RemoveForm.resources
