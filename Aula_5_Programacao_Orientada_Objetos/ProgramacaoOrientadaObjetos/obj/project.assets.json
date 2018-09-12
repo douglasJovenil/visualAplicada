@@ -670,11 +670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\djcsantos\\source\\repos\\ProgramacaoOrientadaObjetos\\ProgramacaoOrientadaObjetos\\ProgramacaoOrientadaObjetos.csproj",
+      "projectUniqueName": "C:\\Users\\djcsantos\\Downloads\\visualAplicada\\Aula_5_Programacao_Orientada_Objetos\\ProgramacaoOrientadaObjetos\\ProgramacaoOrientadaObjetos.csproj",
       "projectName": "ProgramacaoOrientadaObjetos",
-      "projectPath": "C:\\Users\\djcsantos\\source\\repos\\ProgramacaoOrientadaObjetos\\ProgramacaoOrientadaObjetos\\ProgramacaoOrientadaObjetos.csproj",
+      "projectPath": "C:\\Users\\djcsantos\\Downloads\\visualAplicada\\Aula_5_Programacao_Orientada_Objetos\\ProgramacaoOrientadaObjetos\\ProgramacaoOrientadaObjetos.csproj",
       "packagesPath": "C:\\Users\\djcsantos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\djcsantos\\source\\repos\\ProgramacaoOrientadaObjetos\\ProgramacaoOrientadaObjetos\\obj\\",
+      "outputPath": "C:\\Users\\djcsantos\\Downloads\\visualAplicada\\Aula_5_Programacao_Orientada_Objetos\\ProgramacaoOrientadaObjetos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -6,8 +6,23 @@ namespace ProgramacaoOrientadaObjetos
     {
         static void Main(string[] args)
         {
-            TestHour();
+            TestPoint();
             Console.ReadKey();
+        }
+
+        static void TestPoint()
+        {
+            Point MyPoint = new Point(3, 2);
+            Console.WriteLine(MyPoint.ToString());
+        }
+
+        static void TestAccount()
+        {
+            Account MyAccount = new Account();
+            MyAccount.AddMoney(1000);
+            MyAccount.GetMoney(200);
+            MyAccount.AddMoney(500);
+            Console.WriteLine($"Saldo da conta: {MyAccount.AccountBalance}");
         }
 
         static void TestHour()
