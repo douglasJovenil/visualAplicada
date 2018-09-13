@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainPanelTop = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.MainLabelProgramName = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -52,25 +52,25 @@
             this.MainButtonProcessar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.MainButtonSair = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.MainPanelDesktop = new System.Windows.Forms.Panel();
-            this.MainPanelDataGrid = new System.Windows.Forms.Panel();
-            this.MainPanelScrollBarRight = new System.Windows.Forms.Panel();
-            this.MainPanelScrollLeftDataGrid = new System.Windows.Forms.Panel();
             this.MainPanelScrollBarBottom = new System.Windows.Forms.Panel();
             this.MainPanelScrollBottomDataGrid = new System.Windows.Forms.Panel();
+            this.MainPanelScrollBarRight = new System.Windows.Forms.Panel();
+            this.MainPanelScrollLeftDataGrid = new System.Windows.Forms.Panel();
+            this.MainPanelDataGrid = new System.Windows.Forms.Panel();
             this.MainDataGrid = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.MainPanelTop.SuspendLayout();
             this.MainPanelStatusBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxUcsIco)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxUcsLogo)).BeginInit();
             this.MainPanelLeftButtons.SuspendLayout();
-            this.MainPanelDesktop.SuspendLayout();
-            this.MainPanelDataGrid.SuspendLayout();
-            this.MainPanelScrollBarRight.SuspendLayout();
-            this.MainPanelScrollBarBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MainDataGrid)).BeginInit();
             this.panel5.SuspendLayout();
+            this.MainPanelDesktop.SuspendLayout();
+            this.MainPanelScrollBarBottom.SuspendLayout();
+            this.MainPanelScrollBarRight.SuspendLayout();
+            this.MainPanelDataGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // MainPanelTop
@@ -329,6 +329,14 @@
             this.MainButtonSair.UseVisualStyleBackColor = false;
             this.MainButtonSair.Click += new System.EventHandler(this.MainButtonSair_Click);
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.MainPanelDesktop);
+            this.panel5.Location = new System.Drawing.Point(151, 28);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(454, 456);
+            this.panel5.TabIndex = 21;
+            // 
             // MainPanelDesktop
             // 
             this.MainPanelDesktop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -337,36 +345,6 @@
             this.MainPanelDesktop.Name = "MainPanelDesktop";
             this.MainPanelDesktop.Size = new System.Drawing.Size(441, 431);
             this.MainPanelDesktop.TabIndex = 20;
-            // 
-            // MainPanelDataGrid
-            // 
-            this.MainPanelDataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.MainPanelDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainPanelDataGrid.Controls.Add(this.MainPanelScrollBarRight);
-            this.MainPanelDataGrid.Controls.Add(this.MainPanelScrollBarBottom);
-            this.MainPanelDataGrid.Controls.Add(this.MainDataGrid);
-            this.MainPanelDataGrid.Location = new System.Drawing.Point(-1, -1);
-            this.MainPanelDataGrid.Name = "MainPanelDataGrid";
-            this.MainPanelDataGrid.Size = new System.Drawing.Size(441, 431);
-            this.MainPanelDataGrid.TabIndex = 19;
-            // 
-            // MainPanelScrollBarRight
-            // 
-            this.MainPanelScrollBarRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.MainPanelScrollBarRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainPanelScrollBarRight.Controls.Add(this.MainPanelScrollLeftDataGrid);
-            this.MainPanelScrollBarRight.Location = new System.Drawing.Point(422, -1);
-            this.MainPanelScrollBarRight.Name = "MainPanelScrollBarRight";
-            this.MainPanelScrollBarRight.Size = new System.Drawing.Size(18, 414);
-            this.MainPanelScrollBarRight.TabIndex = 15;
-            // 
-            // MainPanelScrollLeftDataGrid
-            // 
-            this.MainPanelScrollLeftDataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(182)))));
-            this.MainPanelScrollLeftDataGrid.Location = new System.Drawing.Point(2, 2);
-            this.MainPanelScrollLeftDataGrid.Name = "MainPanelScrollLeftDataGrid";
-            this.MainPanelScrollLeftDataGrid.Size = new System.Drawing.Size(12, 64);
-            this.MainPanelScrollLeftDataGrid.TabIndex = 6;
             // 
             // MainPanelScrollBarBottom
             // 
@@ -386,37 +364,67 @@
             this.MainPanelScrollBottomDataGrid.Size = new System.Drawing.Size(64, 12);
             this.MainPanelScrollBottomDataGrid.TabIndex = 6;
             // 
+            // MainPanelScrollBarRight
+            // 
+            this.MainPanelScrollBarRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.MainPanelScrollBarRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainPanelScrollBarRight.Controls.Add(this.MainPanelScrollLeftDataGrid);
+            this.MainPanelScrollBarRight.Location = new System.Drawing.Point(422, -1);
+            this.MainPanelScrollBarRight.Name = "MainPanelScrollBarRight";
+            this.MainPanelScrollBarRight.Size = new System.Drawing.Size(18, 414);
+            this.MainPanelScrollBarRight.TabIndex = 15;
+            // 
+            // MainPanelScrollLeftDataGrid
+            // 
+            this.MainPanelScrollLeftDataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(182)))));
+            this.MainPanelScrollLeftDataGrid.Location = new System.Drawing.Point(2, 2);
+            this.MainPanelScrollLeftDataGrid.Name = "MainPanelScrollLeftDataGrid";
+            this.MainPanelScrollLeftDataGrid.Size = new System.Drawing.Size(12, 64);
+            this.MainPanelScrollLeftDataGrid.TabIndex = 6;
+            // 
+            // MainPanelDataGrid
+            // 
+            this.MainPanelDataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.MainPanelDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainPanelDataGrid.Controls.Add(this.MainPanelScrollBarRight);
+            this.MainPanelDataGrid.Controls.Add(this.MainPanelScrollBarBottom);
+            this.MainPanelDataGrid.Controls.Add(this.MainDataGrid);
+            this.MainPanelDataGrid.Location = new System.Drawing.Point(-1, -1);
+            this.MainPanelDataGrid.Name = "MainPanelDataGrid";
+            this.MainPanelDataGrid.Size = new System.Drawing.Size(441, 431);
+            this.MainPanelDataGrid.TabIndex = 19;
+            // 
             // MainDataGrid
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            this.MainDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.MainDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.MainDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.MainDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.MainDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MainDataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.MainDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.MainDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.MainDataGrid.ColumnHeadersHeight = 20;
             this.MainDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.MainDataGrid.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.MainDataGrid.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.MainDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.MainDataGrid.DoubleBuffered = true;
             this.MainDataGrid.EnableHeadersVisualStyles = false;
             this.MainDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
@@ -425,14 +433,14 @@
             this.MainDataGrid.Location = new System.Drawing.Point(0, 0);
             this.MainDataGrid.Name = "MainDataGrid";
             this.MainDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.MainDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.MainDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.MainDataGrid.RowHeadersVisible = false;
             this.MainDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.MainDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -447,14 +455,6 @@
             this.MainDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.MainDataGrid.Size = new System.Drawing.Size(422, 413);
             this.MainDataGrid.TabIndex = 13;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.MainPanelDesktop);
-            this.panel5.Location = new System.Drawing.Point(151, 28);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(454, 456);
-            this.panel5.TabIndex = 21;
             // 
             // Main
             // 
@@ -480,12 +480,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxUcsIco)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxUcsLogo)).EndInit();
             this.MainPanelLeftButtons.ResumeLayout(false);
-            this.MainPanelDesktop.ResumeLayout(false);
-            this.MainPanelDataGrid.ResumeLayout(false);
-            this.MainPanelScrollBarRight.ResumeLayout(false);
-            this.MainPanelScrollBarBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MainDataGrid)).EndInit();
             this.panel5.ResumeLayout(false);
+            this.MainPanelDesktop.ResumeLayout(false);
+            this.MainPanelScrollBarBottom.ResumeLayout(false);
+            this.MainPanelScrollBarRight.ResumeLayout(false);
+            this.MainPanelDataGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MainDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -512,14 +512,14 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button MainButtonSair;
         private System.Windows.Forms.Button MainButtonProcessar;
+        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel MainPanelDesktop;
         private System.Windows.Forms.Panel MainPanelDataGrid;
-        private System.Windows.Forms.Panel MainPanelScrollBarBottom;
-        private System.Windows.Forms.Panel MainPanelScrollBottomDataGrid;
         private System.Windows.Forms.Panel MainPanelScrollBarRight;
         private System.Windows.Forms.Panel MainPanelScrollLeftDataGrid;
+        private System.Windows.Forms.Panel MainPanelScrollBarBottom;
+        private System.Windows.Forms.Panel MainPanelScrollBottomDataGrid;
         public Bunifu.Framework.UI.BunifuCustomDataGrid MainDataGrid;
-        private System.Windows.Forms.Panel panel5;
     }
 }
 

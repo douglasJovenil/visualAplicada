@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ProgramacaoOrientadaObjetos
 {
@@ -15,9 +17,9 @@ namespace ProgramacaoOrientadaObjetos
             P3 = new Point(PX3, PY3);
         }
 
-        public Double GetDistance(Point P1, Point P2) => Math.Sqrt(Math.Pow(P1.X - P2.X, 2) + Math.Pow(P1.Y - P2.Y, 2));
+        private Double GetDistance(Point P1, Point P2) => Math.Sqrt(Math.Pow(P1.X - P2.X, 2) + Math.Pow(P1.Y - P2.Y, 2));
 
-        public string TriangleType(Point P1, Point P2, Point P3)
+        public string TriangleType()
         {
             if (GetDistance(P1, P2) == GetDistance(P2, P3) && GetDistance(P1, P2) == GetDistance(P3, P1))
             {
@@ -30,13 +32,24 @@ namespace ProgramacaoOrientadaObjetos
             return "Escaleno";
         }
 
-        public string AngleType(Point P1, Point P2, Point P3) // Terminar
+        public string AngleType()
         {
-            int[] BiggerP1 = { 1, 2, 3 };
+            List<Double> Points = new List<Double>() { GetDistance(P1, P2), GetDistance(P2, P3), GetDistance(P3, P1) };
 
+            Double A = Points[Points.IndexOf(Points.Max())];
+            Points.RemoveAt(Points.IndexOf(Points.Max()));
+            Double B = Points[0];
+            Double C = Points[1];
 
+            if (Math.Pow(A, 2) == Math.Pow(B, 2) + Math.Pow(C, 2))
+            {
+                return "Retângulo";
+            } else if (Math.Pow(A, 2) > Math.Pow(B, 2) + Math.Pow(C, 2))
+            {
+                return "Obtusângulo";
+            }
 
-            return "0.0f";
+            return "Acutângulo";
         }
     }
 }

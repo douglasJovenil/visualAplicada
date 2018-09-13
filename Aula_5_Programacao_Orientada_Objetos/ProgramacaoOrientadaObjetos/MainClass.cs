@@ -6,8 +6,58 @@ namespace ProgramacaoOrientadaObjetos
     {
         static void Main(string[] args)
         {
-            TestPoint();
+            TestHash();
             Console.ReadKey();
+        }
+
+        static void TestHash()
+        {
+            Hash MyHash = new Hash();
+            
+            while(MyHash.NumberPlays <= 9)
+            {
+                char play;
+                int row;
+                int column;
+
+                MyHash.GetBoard();
+                Console.Write("Informe a jogada: ");
+                play = char.Parse(Console.ReadLine());
+                Console.Write("Informe a linha: ");
+                row = int.Parse(Console.ReadLine());
+                Console.Write("Informe a coluna: ");
+                column = int.Parse(Console.ReadLine());
+                MyHash.SetBoard(play, row, column);
+                Console.ReadKey();
+                Console.Clear();
+            }
+
+        }
+
+        static void TestStatistic()
+        {
+            Statistic MyStatistic = new Statistic();
+            Random RandomGenerator = new Random();
+            double TmpValue;
+
+            Console.Write("Valores: ");
+            for (int i = 0; i <= 10; i++)
+            {
+                TmpValue = RandomGenerator.NextDouble() * 100;
+                MyStatistic.Insert(TmpValue);
+                Console.Write($"{TmpValue.ToString("0.00")} ");
+            }
+            Console.WriteLine($"\nMédia: {MyStatistic.Mean()}");
+            Console.WriteLine($"Desvio Padrão: {MyStatistic.StandardDeviation()}");
+
+        }
+
+        static void TestGeometricFigure()
+        {
+            GeometricFigure MyGeometricFigure = new GeometricFigure(3, 2, 3, 3, 3, 1);
+            Console.WriteLine($"Tipo de Trinâgulo: {MyGeometricFigure.TriangleType()}");
+            Console.WriteLine($"Ângulo: {MyGeometricFigure.AngleType()}");
+
         }
 
         static void TestPoint()
