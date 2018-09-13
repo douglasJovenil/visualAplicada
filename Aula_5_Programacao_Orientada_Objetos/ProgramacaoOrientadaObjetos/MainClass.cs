@@ -24,9 +24,9 @@ namespace ProgramacaoOrientadaObjetos
                 Console.Write("Informe a jogada: ");
                 play = char.Parse(Console.ReadLine());
                 Console.Write("Informe a linha: ");
-                row = int.Parse(Console.ReadLine());
+                row = int.Parse(Console.ReadLine()) - 1;
                 Console.Write("Informe a coluna: ");
-                column = int.Parse(Console.ReadLine());
+                column = int.Parse(Console.ReadLine()) - 1;
                 MyHash.SetBoard(play, row, column);
                 Console.ReadKey();
                 Console.Clear();
