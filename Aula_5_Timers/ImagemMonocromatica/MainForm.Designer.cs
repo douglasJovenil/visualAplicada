@@ -40,7 +40,7 @@
             this.MainButtonSair = new System.Windows.Forms.Button();
             this.MainButtonSalvar = new System.Windows.Forms.Button();
             this.MainButtonConverter = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.MainPictureBoxLogoUCS = new System.Windows.Forms.PictureBox();
             this.MainButtonAbrir = new System.Windows.Forms.Button();
             this.MainPictureBoxOriginal = new System.Windows.Forms.PictureBox();
             this.MainPictureBoxModificado = new System.Windows.Forms.PictureBox();
@@ -57,10 +57,13 @@
             this.MainCheckBoxConverterTudo = new System.Windows.Forms.CheckBox();
             this.MainCheckBoxConverterLinha = new System.Windows.Forms.CheckBox();
             this.MainCheckBoxColuna = new System.Windows.Forms.CheckBox();
+            this.MainLabelTolerancia = new System.Windows.Forms.Label();
+            this.MainLabelTempo = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.MainPanelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxIcone)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxLogoUCS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxModificado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxMostraCor)).BeginInit();
@@ -69,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarBlue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarTolerancia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarTempo)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanelTop
@@ -120,7 +124,7 @@
             this.MainLabelTitulo.AutoSize = true;
             this.MainLabelTitulo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainLabelTitulo.ForeColor = System.Drawing.Color.White;
-            this.MainLabelTitulo.Location = new System.Drawing.Point(40, 9);
+            this.MainLabelTitulo.Location = new System.Drawing.Point(31, 6);
             this.MainLabelTitulo.Name = "MainLabelTitulo";
             this.MainLabelTitulo.Size = new System.Drawing.Size(144, 16);
             this.MainLabelTitulo.TabIndex = 1;
@@ -130,7 +134,7 @@
             // 
             this.MainPictureBoxIcone.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainPictureBoxIcone.BackgroundImage")));
             this.MainPictureBoxIcone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.MainPictureBoxIcone.Location = new System.Drawing.Point(13, 4);
+            this.MainPictureBoxIcone.Location = new System.Drawing.Point(7, 4);
             this.MainPictureBoxIcone.Name = "MainPictureBoxIcone";
             this.MainPictureBoxIcone.Size = new System.Drawing.Size(21, 20);
             this.MainPictureBoxIcone.TabIndex = 0;
@@ -143,7 +147,7 @@
             this.panel1.Controls.Add(this.MainButtonSair);
             this.panel1.Controls.Add(this.MainButtonSalvar);
             this.panel1.Controls.Add(this.MainButtonConverter);
-            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.MainPictureBoxLogoUCS);
             this.panel1.Controls.Add(this.MainButtonAbrir);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 30);
@@ -159,9 +163,9 @@
             this.MainButtonAbrirDiretorio.ForeColor = System.Drawing.Color.White;
             this.MainButtonAbrirDiretorio.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonAbrirDiretorio.Image")));
             this.MainButtonAbrirDiretorio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonAbrirDiretorio.Location = new System.Drawing.Point(3, 199);
+            this.MainButtonAbrirDiretorio.Location = new System.Drawing.Point(3, 209);
             this.MainButtonAbrirDiretorio.Name = "MainButtonAbrirDiretorio";
-            this.MainButtonAbrirDiretorio.Size = new System.Drawing.Size(165, 64);
+            this.MainButtonAbrirDiretorio.Size = new System.Drawing.Size(165, 80);
             this.MainButtonAbrirDiretorio.TabIndex = 8;
             this.MainButtonAbrirDiretorio.Text = "Abrir Diretório";
             this.MainButtonAbrirDiretorio.UseVisualStyleBackColor = true;
@@ -175,9 +179,9 @@
             this.MainButtonSair.ForeColor = System.Drawing.Color.White;
             this.MainButtonSair.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonSair.Image")));
             this.MainButtonSair.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonSair.Location = new System.Drawing.Point(3, 418);
+            this.MainButtonSair.Location = new System.Drawing.Point(3, 455);
             this.MainButtonSair.Name = "MainButtonSair";
-            this.MainButtonSair.Size = new System.Drawing.Size(165, 64);
+            this.MainButtonSair.Size = new System.Drawing.Size(165, 80);
             this.MainButtonSair.TabIndex = 7;
             this.MainButtonSair.Text = "Sair";
             this.MainButtonSair.UseCompatibleTextRendering = true;
@@ -192,9 +196,9 @@
             this.MainButtonSalvar.ForeColor = System.Drawing.Color.White;
             this.MainButtonSalvar.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonSalvar.Image")));
             this.MainButtonSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonSalvar.Location = new System.Drawing.Point(3, 345);
+            this.MainButtonSalvar.Location = new System.Drawing.Point(3, 373);
             this.MainButtonSalvar.Name = "MainButtonSalvar";
-            this.MainButtonSalvar.Size = new System.Drawing.Size(165, 64);
+            this.MainButtonSalvar.Size = new System.Drawing.Size(165, 80);
             this.MainButtonSalvar.TabIndex = 6;
             this.MainButtonSalvar.Text = "Salvar";
             this.MainButtonSalvar.UseVisualStyleBackColor = true;
@@ -208,25 +212,25 @@
             this.MainButtonConverter.ForeColor = System.Drawing.Color.White;
             this.MainButtonConverter.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonConverter.Image")));
             this.MainButtonConverter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonConverter.Location = new System.Drawing.Point(3, 272);
+            this.MainButtonConverter.Location = new System.Drawing.Point(3, 291);
             this.MainButtonConverter.Name = "MainButtonConverter";
-            this.MainButtonConverter.Size = new System.Drawing.Size(165, 64);
+            this.MainButtonConverter.Size = new System.Drawing.Size(165, 80);
             this.MainButtonConverter.TabIndex = 5;
             this.MainButtonConverter.Text = "Converter";
             this.MainButtonConverter.UseVisualStyleBackColor = true;
             this.MainButtonConverter.Click += new System.EventHandler(this.MainButtonConverter_Click);
             // 
-            // pictureBox2
+            // MainPictureBoxLogoUCS
             // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(171, 124);
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.MainPictureBoxLogoUCS.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainPictureBoxLogoUCS.BackgroundImage")));
+            this.MainPictureBoxLogoUCS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.MainPictureBoxLogoUCS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MainPictureBoxLogoUCS.Location = new System.Drawing.Point(0, 0);
+            this.MainPictureBoxLogoUCS.Name = "MainPictureBoxLogoUCS";
+            this.MainPictureBoxLogoUCS.Size = new System.Drawing.Size(171, 124);
+            this.MainPictureBoxLogoUCS.TabIndex = 4;
+            this.MainPictureBoxLogoUCS.TabStop = false;
+            this.MainPictureBoxLogoUCS.Click += new System.EventHandler(this.MainPictureBoxLogoUCS_Click);
             // 
             // MainButtonAbrir
             // 
@@ -236,9 +240,9 @@
             this.MainButtonAbrir.ForeColor = System.Drawing.Color.White;
             this.MainButtonAbrir.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonAbrir.Image")));
             this.MainButtonAbrir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonAbrir.Location = new System.Drawing.Point(3, 126);
+            this.MainButtonAbrir.Location = new System.Drawing.Point(3, 127);
             this.MainButtonAbrir.Name = "MainButtonAbrir";
-            this.MainButtonAbrir.Size = new System.Drawing.Size(165, 64);
+            this.MainButtonAbrir.Size = new System.Drawing.Size(165, 80);
             this.MainButtonAbrir.TabIndex = 3;
             this.MainButtonAbrir.Text = "Abrir";
             this.MainButtonAbrir.UseVisualStyleBackColor = true;
@@ -249,7 +253,7 @@
             this.MainPictureBoxOriginal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainPictureBoxOriginal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.MainPictureBoxOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainPictureBoxOriginal.Location = new System.Drawing.Point(177, 68);
+            this.MainPictureBoxOriginal.Location = new System.Drawing.Point(178, 68);
             this.MainPictureBoxOriginal.Name = "MainPictureBoxOriginal";
             this.MainPictureBoxOriginal.Size = new System.Drawing.Size(320, 240);
             this.MainPictureBoxOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -261,7 +265,7 @@
             this.MainPictureBoxModificado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainPictureBoxModificado.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.MainPictureBoxModificado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainPictureBoxModificado.Location = new System.Drawing.Point(512, 68);
+            this.MainPictureBoxModificado.Location = new System.Drawing.Point(513, 68);
             this.MainPictureBoxModificado.Name = "MainPictureBoxModificado";
             this.MainPictureBoxModificado.Size = new System.Drawing.Size(320, 240);
             this.MainPictureBoxModificado.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -273,7 +277,7 @@
             this.MainLabelOriginal.AutoSize = true;
             this.MainLabelOriginal.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainLabelOriginal.ForeColor = System.Drawing.Color.White;
-            this.MainLabelOriginal.Location = new System.Drawing.Point(303, 41);
+            this.MainLabelOriginal.Location = new System.Drawing.Point(314, 41);
             this.MainLabelOriginal.Name = "MainLabelOriginal";
             this.MainLabelOriginal.Size = new System.Drawing.Size(49, 16);
             this.MainLabelOriginal.TabIndex = 2;
@@ -284,7 +288,7 @@
             this.MainLabelModificado.AutoSize = true;
             this.MainLabelModificado.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainLabelModificado.ForeColor = System.Drawing.Color.White;
-            this.MainLabelModificado.Location = new System.Drawing.Point(648, 41);
+            this.MainLabelModificado.Location = new System.Drawing.Point(637, 41);
             this.MainLabelModificado.Name = "MainLabelModificado";
             this.MainLabelModificado.Size = new System.Drawing.Size(72, 16);
             this.MainLabelModificado.TabIndex = 5;
@@ -294,42 +298,42 @@
             // 
             this.MainPictureBoxMostraCor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainPictureBoxMostraCor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainPictureBoxMostraCor.Location = new System.Drawing.Point(512, 315);
+            this.MainPictureBoxMostraCor.Location = new System.Drawing.Point(513, 315);
             this.MainPictureBoxMostraCor.Name = "MainPictureBoxMostraCor";
-            this.MainPictureBoxMostraCor.Size = new System.Drawing.Size(320, 219);
+            this.MainPictureBoxMostraCor.Size = new System.Drawing.Size(320, 197);
             this.MainPictureBoxMostraCor.TabIndex = 7;
             this.MainPictureBoxMostraCor.TabStop = false;
             // 
             // MainTrackBarRed
             // 
             this.MainTrackBarRed.AllowDrop = true;
-            this.MainTrackBarRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.MainTrackBarRed.Location = new System.Drawing.Point(177, 314);
+            this.MainTrackBarRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(36)))), ((int)(((byte)(46)))));
+            this.MainTrackBarRed.Location = new System.Drawing.Point(178, 314);
             this.MainTrackBarRed.Maximum = 255;
             this.MainTrackBarRed.Name = "MainTrackBarRed";
-            this.MainTrackBarRed.Size = new System.Drawing.Size(320, 42);
+            this.MainTrackBarRed.Size = new System.Drawing.Size(320, 45);
             this.MainTrackBarRed.TabIndex = 1;
-            this.MainTrackBarRed.Scroll += new System.EventHandler(this.MainTrackBarSelecionaCor_Scroll);
+            this.MainTrackBarRed.Scroll += new System.EventHandler(this.MainTrackBarRed_Scroll);
             // 
             // MainTrackBarGreen
             // 
             this.MainTrackBarGreen.AllowDrop = true;
-            this.MainTrackBarGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.MainTrackBarGreen.Location = new System.Drawing.Point(177, 365);
+            this.MainTrackBarGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(137)))), ((int)(((byte)(67)))));
+            this.MainTrackBarGreen.Location = new System.Drawing.Point(178, 365);
             this.MainTrackBarGreen.Maximum = 255;
             this.MainTrackBarGreen.Name = "MainTrackBarGreen";
-            this.MainTrackBarGreen.Size = new System.Drawing.Size(320, 42);
+            this.MainTrackBarGreen.Size = new System.Drawing.Size(320, 45);
             this.MainTrackBarGreen.TabIndex = 8;
             this.MainTrackBarGreen.Scroll += new System.EventHandler(this.MainTrackBarGreen_Scroll);
             // 
             // MainTrackBarBlue
             // 
             this.MainTrackBarBlue.AllowDrop = true;
-            this.MainTrackBarBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.MainTrackBarBlue.Location = new System.Drawing.Point(177, 416);
+            this.MainTrackBarBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(182)))));
+            this.MainTrackBarBlue.Location = new System.Drawing.Point(178, 416);
             this.MainTrackBarBlue.Maximum = 255;
             this.MainTrackBarBlue.Name = "MainTrackBarBlue";
-            this.MainTrackBarBlue.Size = new System.Drawing.Size(320, 42);
+            this.MainTrackBarBlue.Size = new System.Drawing.Size(320, 45);
             this.MainTrackBarBlue.TabIndex = 9;
             this.MainTrackBarBlue.Scroll += new System.EventHandler(this.MainTrackBarBlue_Scroll);
             // 
@@ -337,10 +341,10 @@
             // 
             this.MainTrackBarTolerancia.AllowDrop = true;
             this.MainTrackBarTolerancia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.MainTrackBarTolerancia.Location = new System.Drawing.Point(177, 467);
+            this.MainTrackBarTolerancia.Location = new System.Drawing.Point(178, 467);
             this.MainTrackBarTolerancia.Maximum = 255;
             this.MainTrackBarTolerancia.Name = "MainTrackBarTolerancia";
-            this.MainTrackBarTolerancia.Size = new System.Drawing.Size(320, 42);
+            this.MainTrackBarTolerancia.Size = new System.Drawing.Size(320, 45);
             this.MainTrackBarTolerancia.TabIndex = 10;
             // 
             // MainTimerTempo
@@ -352,11 +356,11 @@
             // 
             this.MainTrackBarTempo.AllowDrop = true;
             this.MainTrackBarTempo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.MainTrackBarTempo.Location = new System.Drawing.Point(177, 518);
+            this.MainTrackBarTempo.Location = new System.Drawing.Point(178, 518);
             this.MainTrackBarTempo.Maximum = 10000;
             this.MainTrackBarTempo.Minimum = 10;
             this.MainTrackBarTempo.Name = "MainTrackBarTempo";
-            this.MainTrackBarTempo.Size = new System.Drawing.Size(320, 42);
+            this.MainTrackBarTempo.Size = new System.Drawing.Size(320, 45);
             this.MainTrackBarTempo.TabIndex = 15;
             this.MainTrackBarTempo.Value = 10;
             this.MainTrackBarTempo.Scroll += new System.EventHandler(this.MainTrackBarTempo_Scroll);
@@ -364,12 +368,12 @@
             // MainCheckBoxConverterTudo
             // 
             this.MainCheckBoxConverterTudo.AutoSize = true;
-            this.MainCheckBoxConverterTudo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.MainCheckBoxConverterTudo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainCheckBoxConverterTudo.Checked = true;
             this.MainCheckBoxConverterTudo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.MainCheckBoxConverterTudo.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.MainCheckBoxConverterTudo.ForeColor = System.Drawing.Color.White;
-            this.MainCheckBoxConverterTudo.Location = new System.Drawing.Point(512, 540);
+            this.MainCheckBoxConverterTudo.Location = new System.Drawing.Point(3, 13);
             this.MainCheckBoxConverterTudo.Name = "MainCheckBoxConverterTudo";
             this.MainCheckBoxConverterTudo.Size = new System.Drawing.Size(54, 20);
             this.MainCheckBoxConverterTudo.TabIndex = 16;
@@ -379,10 +383,10 @@
             // MainCheckBoxConverterLinha
             // 
             this.MainCheckBoxConverterLinha.AutoSize = true;
-            this.MainCheckBoxConverterLinha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.MainCheckBoxConverterLinha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainCheckBoxConverterLinha.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.MainCheckBoxConverterLinha.ForeColor = System.Drawing.Color.White;
-            this.MainCheckBoxConverterLinha.Location = new System.Drawing.Point(637, 540);
+            this.MainCheckBoxConverterLinha.Location = new System.Drawing.Point(127, 13);
             this.MainCheckBoxConverterLinha.Name = "MainCheckBoxConverterLinha";
             this.MainCheckBoxConverterLinha.Size = new System.Drawing.Size(56, 20);
             this.MainCheckBoxConverterLinha.TabIndex = 17;
@@ -392,15 +396,50 @@
             // MainCheckBoxColuna
             // 
             this.MainCheckBoxColuna.AutoSize = true;
-            this.MainCheckBoxColuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.MainCheckBoxColuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainCheckBoxColuna.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.MainCheckBoxColuna.ForeColor = System.Drawing.Color.White;
-            this.MainCheckBoxColuna.Location = new System.Drawing.Point(764, 540);
+            this.MainCheckBoxColuna.Location = new System.Drawing.Point(251, 13);
             this.MainCheckBoxColuna.Name = "MainCheckBoxColuna";
             this.MainCheckBoxColuna.Size = new System.Drawing.Size(67, 20);
             this.MainCheckBoxColuna.TabIndex = 18;
             this.MainCheckBoxColuna.Text = "Coluna";
             this.MainCheckBoxColuna.UseVisualStyleBackColor = false;
+            // 
+            // MainLabelTolerancia
+            // 
+            this.MainLabelTolerancia.AutoSize = true;
+            this.MainLabelTolerancia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.MainLabelTolerancia.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainLabelTolerancia.ForeColor = System.Drawing.Color.White;
+            this.MainLabelTolerancia.Location = new System.Drawing.Point(305, 496);
+            this.MainLabelTolerancia.Name = "MainLabelTolerancia";
+            this.MainLabelTolerancia.Size = new System.Drawing.Size(64, 16);
+            this.MainLabelTolerancia.TabIndex = 11;
+            this.MainLabelTolerancia.Text = "Tolerância";
+            // 
+            // MainLabelTempo
+            // 
+            this.MainLabelTempo.AutoSize = true;
+            this.MainLabelTempo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.MainLabelTempo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainLabelTempo.ForeColor = System.Drawing.Color.White;
+            this.MainLabelTempo.Location = new System.Drawing.Point(315, 547);
+            this.MainLabelTempo.Name = "MainLabelTempo";
+            this.MainLabelTempo.Size = new System.Drawing.Size(45, 16);
+            this.MainLabelTempo.TabIndex = 19;
+            this.MainLabelTempo.Text = "Tempo";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.panel2.Controls.Add(this.MainCheckBoxConverterTudo);
+            this.panel2.Controls.Add(this.MainCheckBoxConverterLinha);
+            this.panel2.Controls.Add(this.MainCheckBoxColuna);
+            this.panel2.Location = new System.Drawing.Point(513, 518);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(320, 45);
+            this.panel2.TabIndex = 20;
             // 
             // MainPictureBoxLogo
             // 
@@ -408,9 +447,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(839, 569);
-            this.Controls.Add(this.MainCheckBoxColuna);
-            this.Controls.Add(this.MainCheckBoxConverterLinha);
-            this.Controls.Add(this.MainCheckBoxConverterTudo);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.MainLabelTempo);
+            this.Controls.Add(this.MainLabelTolerancia);
             this.Controls.Add(this.MainTrackBarTempo);
             this.Controls.Add(this.MainTrackBarTolerancia);
             this.Controls.Add(this.MainTrackBarBlue);
@@ -433,7 +472,7 @@
             this.MainPanelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxIcone)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxLogoUCS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxOriginal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxModificado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxMostraCor)).EndInit();
@@ -442,6 +481,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarBlue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarTolerancia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarTempo)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -459,7 +500,7 @@
         private System.Windows.Forms.Button MainButtonSair;
         private System.Windows.Forms.Button MainButtonSalvar;
         private System.Windows.Forms.Button MainButtonConverter;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox MainPictureBoxLogoUCS;
         private System.Windows.Forms.Label MainLabelOriginal;
         private System.Windows.Forms.Label MainLabelModificado;
         private System.Windows.Forms.PictureBox MainPictureBoxMostraCor;
@@ -476,6 +517,9 @@
         private System.Windows.Forms.CheckBox MainCheckBoxConverterTudo;
         private System.Windows.Forms.CheckBox MainCheckBoxConverterLinha;
         private System.Windows.Forms.CheckBox MainCheckBoxColuna;
+        private System.Windows.Forms.Label MainLabelTolerancia;
+        private System.Windows.Forms.Label MainLabelTempo;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
