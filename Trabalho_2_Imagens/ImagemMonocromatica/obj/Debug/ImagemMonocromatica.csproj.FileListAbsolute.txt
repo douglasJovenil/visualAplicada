@@ -8,3 +8,33 @@ C:\Users\Douglas\Desktop\visualAplicada\Trabalho_2_Imagens\ImagemMonocromatica\o
 C:\Users\Douglas\Desktop\visualAplicada\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.exe
 C:\Users\Douglas\Desktop\visualAplicada\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.pdb
 C:\Users\Douglas\Desktop\visualAplicada\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.MainPictureBoxLogo.resources
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe.config
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.pdb
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csprojAssemblyReference.cache
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.MainPictureBoxLogo.resources
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.Properties.Resources.resources
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csproj.GenerateResource.cache
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csproj.CoreCompileInputs.cache
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.exe
+D:\Magnus\Área de Trabalho\Nova pasta\visualAplicada-master\visualAplicada-master\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.pdb
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe.config
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.pdb
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csprojAssemblyReference.cache
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.MainPictureBoxLogo.resources
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.Properties.Resources.resources
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csproj.GenerateResource.cache
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csproj.CoreCompileInputs.cache
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.exe
+C:\Users\Douglas\Desktop\Trabalho_2_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.pdb
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe.config
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.pdb
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csprojAssemblyReference.cache
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.MainPictureBoxLogo.resources
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.Properties.Resources.resources
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csproj.GenerateResource.cache
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.csproj.CoreCompileInputs.cache
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.exe
+D:\Magnus\Área de Trabalho\Trabalho_1_Imagens\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.pdb

@@ -31,14 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPictureBoxLogo));
             this.MainPanelTop = new System.Windows.Forms.Panel();
             this.MainButtonMinimize = new System.Windows.Forms.Button();
-            this.MainButtonExpand = new System.Windows.Forms.Button();
             this.MainButtonExit = new System.Windows.Forms.Button();
             this.MainLabelTitulo = new System.Windows.Forms.Label();
             this.MainPictureBoxIcone = new System.Windows.Forms.PictureBox();
-            this.MainPanelBot = new System.Windows.Forms.Panel();
-            this.MainProgressBar = new System.Windows.Forms.ProgressBar();
-            this.MainLabelStatus = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MainButtonAbrirDiretorio = new System.Windows.Forms.Button();
             this.MainButtonSair = new System.Windows.Forms.Button();
             this.MainButtonSalvar = new System.Windows.Forms.Button();
             this.MainButtonConverter = new System.Windows.Forms.Button();
@@ -52,9 +49,10 @@
             this.MainTrackBarRed = new System.Windows.Forms.TrackBar();
             this.MainTrackBarGreen = new System.Windows.Forms.TrackBar();
             this.MainTrackBarBlue = new System.Windows.Forms.TrackBar();
+            this.MainTrackBarTolerancia = new System.Windows.Forms.TrackBar();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.MainPanelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxIcone)).BeginInit();
-            this.MainPanelBot.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxOriginal)).BeginInit();
@@ -63,13 +61,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarRed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarGreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarTolerancia)).BeginInit();
             this.SuspendLayout();
             // 
             // MainPanelTop
             // 
             this.MainPanelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainPanelTop.Controls.Add(this.MainButtonMinimize);
-            this.MainPanelTop.Controls.Add(this.MainButtonExpand);
             this.MainPanelTop.Controls.Add(this.MainButtonExit);
             this.MainPanelTop.Controls.Add(this.MainLabelTitulo);
             this.MainPanelTop.Controls.Add(this.MainPictureBoxIcone);
@@ -89,25 +87,12 @@
             this.MainButtonMinimize.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainButtonMinimize.ForeColor = System.Drawing.Color.White;
             this.MainButtonMinimize.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonMinimize.Image")));
-            this.MainButtonMinimize.Location = new System.Drawing.Point(749, 2);
+            this.MainButtonMinimize.Location = new System.Drawing.Point(780, 2);
             this.MainButtonMinimize.Name = "MainButtonMinimize";
             this.MainButtonMinimize.Size = new System.Drawing.Size(25, 25);
             this.MainButtonMinimize.TabIndex = 10;
             this.MainButtonMinimize.UseVisualStyleBackColor = true;
             this.MainButtonMinimize.Click += new System.EventHandler(this.MainButtonMinimize_Click);
-            // 
-            // MainButtonExpand
-            // 
-            this.MainButtonExpand.FlatAppearance.BorderSize = 0;
-            this.MainButtonExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MainButtonExpand.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainButtonExpand.ForeColor = System.Drawing.Color.White;
-            this.MainButtonExpand.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonExpand.Image")));
-            this.MainButtonExpand.Location = new System.Drawing.Point(780, 3);
-            this.MainButtonExpand.Name = "MainButtonExpand";
-            this.MainButtonExpand.Size = new System.Drawing.Size(25, 25);
-            this.MainButtonExpand.TabIndex = 9;
-            this.MainButtonExpand.UseVisualStyleBackColor = true;
             // 
             // MainButtonExit
             // 
@@ -144,39 +129,10 @@
             this.MainPictureBoxIcone.TabIndex = 0;
             this.MainPictureBoxIcone.TabStop = false;
             // 
-            // MainPanelBot
-            // 
-            this.MainPanelBot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.MainPanelBot.Controls.Add(this.MainProgressBar);
-            this.MainPanelBot.Controls.Add(this.MainLabelStatus);
-            this.MainPanelBot.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MainPanelBot.Location = new System.Drawing.Point(0, 474);
-            this.MainPanelBot.Name = "MainPanelBot";
-            this.MainPanelBot.Size = new System.Drawing.Size(839, 30);
-            this.MainPanelBot.TabIndex = 1;
-            // 
-            // MainProgressBar
-            // 
-            this.MainProgressBar.Location = new System.Drawing.Point(177, 5);
-            this.MainProgressBar.Name = "MainProgressBar";
-            this.MainProgressBar.Size = new System.Drawing.Size(655, 20);
-            this.MainProgressBar.TabIndex = 12;
-            this.MainProgressBar.Visible = false;
-            // 
-            // MainLabelStatus
-            // 
-            this.MainLabelStatus.AutoSize = true;
-            this.MainLabelStatus.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainLabelStatus.ForeColor = System.Drawing.Color.White;
-            this.MainLabelStatus.Location = new System.Drawing.Point(10, 5);
-            this.MainLabelStatus.Name = "MainLabelStatus";
-            this.MainLabelStatus.Size = new System.Drawing.Size(160, 16);
-            this.MainLabelStatus.TabIndex = 11;
-            this.MainLabelStatus.Text = "Aguardando abrir arquivo...";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.panel1.Controls.Add(this.MainButtonAbrirDiretorio);
             this.panel1.Controls.Add(this.MainButtonSair);
             this.panel1.Controls.Add(this.MainButtonSalvar);
             this.panel1.Controls.Add(this.MainButtonConverter);
@@ -185,8 +141,24 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(171, 444);
+            this.panel1.Size = new System.Drawing.Size(171, 487);
             this.panel1.TabIndex = 2;
+            // 
+            // MainButtonAbrirDiretorio
+            // 
+            this.MainButtonAbrirDiretorio.FlatAppearance.BorderSize = 0;
+            this.MainButtonAbrirDiretorio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MainButtonAbrirDiretorio.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.MainButtonAbrirDiretorio.ForeColor = System.Drawing.Color.White;
+            this.MainButtonAbrirDiretorio.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonAbrirDiretorio.Image")));
+            this.MainButtonAbrirDiretorio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MainButtonAbrirDiretorio.Location = new System.Drawing.Point(3, 199);
+            this.MainButtonAbrirDiretorio.Name = "MainButtonAbrirDiretorio";
+            this.MainButtonAbrirDiretorio.Size = new System.Drawing.Size(165, 64);
+            this.MainButtonAbrirDiretorio.TabIndex = 8;
+            this.MainButtonAbrirDiretorio.Text = "Abrir Diretório";
+            this.MainButtonAbrirDiretorio.UseVisualStyleBackColor = true;
+            this.MainButtonAbrirDiretorio.Click += new System.EventHandler(this.MainButtonAbrirDiretorio_Click);
             // 
             // MainButtonSair
             // 
@@ -196,9 +168,9 @@
             this.MainButtonSair.ForeColor = System.Drawing.Color.White;
             this.MainButtonSair.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonSair.Image")));
             this.MainButtonSair.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonSair.Location = new System.Drawing.Point(3, 384);
+            this.MainButtonSair.Location = new System.Drawing.Point(3, 418);
             this.MainButtonSair.Name = "MainButtonSair";
-            this.MainButtonSair.Size = new System.Drawing.Size(165, 58);
+            this.MainButtonSair.Size = new System.Drawing.Size(165, 64);
             this.MainButtonSair.TabIndex = 7;
             this.MainButtonSair.Text = "Sair";
             this.MainButtonSair.UseCompatibleTextRendering = true;
@@ -213,9 +185,9 @@
             this.MainButtonSalvar.ForeColor = System.Drawing.Color.White;
             this.MainButtonSalvar.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonSalvar.Image")));
             this.MainButtonSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonSalvar.Location = new System.Drawing.Point(3, 321);
+            this.MainButtonSalvar.Location = new System.Drawing.Point(3, 345);
             this.MainButtonSalvar.Name = "MainButtonSalvar";
-            this.MainButtonSalvar.Size = new System.Drawing.Size(165, 58);
+            this.MainButtonSalvar.Size = new System.Drawing.Size(165, 64);
             this.MainButtonSalvar.TabIndex = 6;
             this.MainButtonSalvar.Text = "Salvar";
             this.MainButtonSalvar.UseVisualStyleBackColor = true;
@@ -229,9 +201,9 @@
             this.MainButtonConverter.ForeColor = System.Drawing.Color.White;
             this.MainButtonConverter.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonConverter.Image")));
             this.MainButtonConverter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonConverter.Location = new System.Drawing.Point(3, 258);
+            this.MainButtonConverter.Location = new System.Drawing.Point(3, 272);
             this.MainButtonConverter.Name = "MainButtonConverter";
-            this.MainButtonConverter.Size = new System.Drawing.Size(165, 58);
+            this.MainButtonConverter.Size = new System.Drawing.Size(165, 64);
             this.MainButtonConverter.TabIndex = 5;
             this.MainButtonConverter.Text = "Converter";
             this.MainButtonConverter.UseVisualStyleBackColor = true;
@@ -241,11 +213,13 @@
             // 
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(171, 189);
+            this.pictureBox2.Size = new System.Drawing.Size(171, 124);
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // MainButtonAbrir
             // 
@@ -255,9 +229,9 @@
             this.MainButtonAbrir.ForeColor = System.Drawing.Color.White;
             this.MainButtonAbrir.Image = ((System.Drawing.Image)(resources.GetObject("MainButtonAbrir.Image")));
             this.MainButtonAbrir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MainButtonAbrir.Location = new System.Drawing.Point(3, 195);
+            this.MainButtonAbrir.Location = new System.Drawing.Point(3, 126);
             this.MainButtonAbrir.Name = "MainButtonAbrir";
-            this.MainButtonAbrir.Size = new System.Drawing.Size(165, 58);
+            this.MainButtonAbrir.Size = new System.Drawing.Size(165, 64);
             this.MainButtonAbrir.TabIndex = 3;
             this.MainButtonAbrir.Text = "Abrir";
             this.MainButtonAbrir.UseVisualStyleBackColor = true;
@@ -271,6 +245,7 @@
             this.MainPictureBoxOriginal.Location = new System.Drawing.Point(177, 68);
             this.MainPictureBoxOriginal.Name = "MainPictureBoxOriginal";
             this.MainPictureBoxOriginal.Size = new System.Drawing.Size(320, 240);
+            this.MainPictureBoxOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.MainPictureBoxOriginal.TabIndex = 3;
             this.MainPictureBoxOriginal.TabStop = false;
             // 
@@ -282,6 +257,7 @@
             this.MainPictureBoxModificado.Location = new System.Drawing.Point(512, 68);
             this.MainPictureBoxModificado.Name = "MainPictureBoxModificado";
             this.MainPictureBoxModificado.Size = new System.Drawing.Size(320, 240);
+            this.MainPictureBoxModificado.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.MainPictureBoxModificado.TabIndex = 4;
             this.MainPictureBoxModificado.TabStop = false;
             // 
@@ -312,7 +288,7 @@
             this.MainPictureBoxMostraCor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.MainPictureBoxMostraCor.Location = new System.Drawing.Point(512, 315);
             this.MainPictureBoxMostraCor.Name = "MainPictureBoxMostraCor";
-            this.MainPictureBoxMostraCor.Size = new System.Drawing.Size(318, 146);
+            this.MainPictureBoxMostraCor.Size = new System.Drawing.Size(318, 197);
             this.MainPictureBoxMostraCor.TabIndex = 7;
             this.MainPictureBoxMostraCor.TabStop = false;
             // 
@@ -349,12 +325,23 @@
             this.MainTrackBarBlue.TabIndex = 9;
             this.MainTrackBarBlue.Scroll += new System.EventHandler(this.MainTrackBarBlue_Scroll);
             // 
+            // MainTrackBarTolerancia
+            // 
+            this.MainTrackBarTolerancia.AllowDrop = true;
+            this.MainTrackBarTolerancia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.MainTrackBarTolerancia.Location = new System.Drawing.Point(177, 467);
+            this.MainTrackBarTolerancia.Maximum = 255;
+            this.MainTrackBarTolerancia.Name = "MainTrackBarTolerancia";
+            this.MainTrackBarTolerancia.Size = new System.Drawing.Size(320, 45);
+            this.MainTrackBarTolerancia.TabIndex = 10;
+            // 
             // MainPictureBoxLogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.ClientSize = new System.Drawing.Size(839, 504);
+            this.ClientSize = new System.Drawing.Size(839, 517);
+            this.Controls.Add(this.MainTrackBarTolerancia);
             this.Controls.Add(this.MainTrackBarBlue);
             this.Controls.Add(this.MainTrackBarGreen);
             this.Controls.Add(this.MainPictureBoxMostraCor);
@@ -364,7 +351,6 @@
             this.Controls.Add(this.MainPictureBoxModificado);
             this.Controls.Add(this.MainPictureBoxOriginal);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.MainPanelBot);
             this.Controls.Add(this.MainPanelTop);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -375,8 +361,6 @@
             this.MainPanelTop.ResumeLayout(false);
             this.MainPanelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxIcone)).EndInit();
-            this.MainPanelBot.ResumeLayout(false);
-            this.MainPanelBot.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxOriginal)).EndInit();
@@ -385,6 +369,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarRed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarGreen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainTrackBarTolerancia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,7 +378,6 @@
         #endregion
 
         private System.Windows.Forms.Panel MainPanelTop;
-        private System.Windows.Forms.Panel MainPanelBot;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button MainButtonAbrir;
         private System.Windows.Forms.PictureBox MainPictureBoxOriginal;
@@ -409,12 +393,12 @@
         private System.Windows.Forms.PictureBox MainPictureBoxMostraCor;
         private System.Windows.Forms.Button MainButtonExit;
         private System.Windows.Forms.Button MainButtonMinimize;
-        private System.Windows.Forms.Button MainButtonExpand;
-        private System.Windows.Forms.ProgressBar MainProgressBar;
-        private System.Windows.Forms.Label MainLabelStatus;
         private System.Windows.Forms.TrackBar MainTrackBarRed;
         private System.Windows.Forms.TrackBar MainTrackBarGreen;
         private System.Windows.Forms.TrackBar MainTrackBarBlue;
+        private System.Windows.Forms.Button MainButtonAbrirDiretorio;
+        private System.Windows.Forms.TrackBar MainTrackBarTolerancia;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
