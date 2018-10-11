@@ -1,0 +1,10 @@
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\obj\Debug\Aula_6_ListasGraficos.csprojAssemblyReference.cache
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\obj\Debug\Aula_6_ListasGraficos.Properties.Resources.resources
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\obj\Debug\Aula_6_ListasGraficos.csproj.GenerateResource.cache
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\obj\Debug\Aula_6_ListasGraficos.csproj.CoreCompileInputs.cache
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\bin\Debug\Aula_6_ListasGraficos.exe.config
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\bin\Debug\Aula_6_ListasGraficos.exe
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\bin\Debug\Aula_6_ListasGraficos.pdb
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\obj\Debug\Aula_6_ListasGraficos.MainForm.resources
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\obj\Debug\Aula_6_ListasGraficos.exe
+C:\Users\djcsantos\Downloads\visualAplicada\Aula_6_ListasGraficos\Aula_6_ListasGraficos\obj\Debug\Aula_6_ListasGraficos.pdb
