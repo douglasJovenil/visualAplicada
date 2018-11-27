@@ -1,44 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImagemMonocromatica
 {
     class Player : SerialPort
     {
-        public string ID { get; set; }
-        public Bitmap Image { get; set; }
-        public char Letter { get; set; }
-        public int Value { get; set; }
+        public string PlayerID { get; set; }
+        public string OpponentID { get; set; }
+        public Bitmap PlayerImage { get; set; }
+        public Bitmap OpponentImage { get; set; }
+        public char PlayerLetter { get; set; }
+        public char OpponentLetter { get; set; }
+        public int PlayerValue { get; set; }
+        public int OpponentValue { get; set; }
+        public int WinValue { get; set; }
         public int NumberOfPlays;
-        public bool MyTurn;
+        public bool Turn;
+        public char Winner { get; set; }
 
         public Player()
         {
-            // string ResourcesPath = Directory.GetCurrentDirectory().Replace("bin\\Debug", "Resources"); // Usar pra carregar as imagens
-            ID = Process.GetCurrentProcess().Id.ToString();
+            PlayerID = Process.GetCurrentProcess().Id.ToString();
+            NumberOfPlays = 0;
         }
 
-        public Player(string ID_P)
+        public void SetPlayer(string OpponentID_P, char PlayerImage_P, char OpponentImage_P, char PlayerLetter_P, char OpponetLetter_P, int PlayerValue_P, int OpponentValue_P, bool Turn_P)
         {
-            ID = ID_P;
+            string ResourcesPath = Directory.GetCurrentDirectory().Replace("bin\\Debug", "Resources");
+
+            OpponentID = OpponentID_P;
+            PlayerImage = new Bitmap($"{ResourcesPath}\\{PlayerImage_P}.png");
+            OpponentImage = new Bitmap($"{ResourcesPath}\\{OpponentImage_P}.png");
+            PlayerLetter = PlayerLetter_P;
+            OpponentLetter = OpponetLetter_P;
+            PlayerValue = PlayerValue_P;
+            OpponentValue = OpponentValue_P;
+            WinValue = 3 * PlayerValue;
+            Turn = Turn_P;
+        }
+
+        public void ChangeTurn()
+        {
+            Turn = !Turn;
         }
 
         public Player GetPlayerByLetter(char Letter_P)
         {
-            if (Letter == Letter_P) return this;
-            else return null;
-        }
-
-        public Player GetPlayerByID(string ID_P)
-        {
-            if (ID == ID_P) return this;
+            if (PlayerLetter == Letter_P) return this;
             else return null;
         }
 

@@ -1,37 +1,33 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO.Ports;
-using System.Threading;
 
 namespace ImagemMonocromatica
 {
     public partial class MainForm : Form
     {
-        private Player CurrentPlayer, StandbyPlayer, WinnerPlayer;
-        //private Bitmap XImage, OImage;
+        private Player ObjPlayer;
         private Window ObjWindow;
         private int SecondsToRestart;
-        //char OwnLetter;
+        private PointHistoric[,] PlayHistory;
 
         public MainForm()
         {
             InitializeComponent();
         }
 
+        // ############################################# MÉTODOS DE INICIALIZAÇÃO ######################################################
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             ObjWindow = new Window(Height, Width);
-            CurrentPlayer = new Player();
-            AddPortsToCombo();
-            // Como são dois jogadores, cada um deles vai descontar uma unidade desta variável no TimerWin
-            // Portanto ela é iniciada com o dobro do tempo que será contado de 3 até 1
-            SecondsToRestart = 8;
-            MainLabelTitulo.Text = $"Jogo da Velha {CurrentPlayer.ID}";
+            ObjPlayer = new Player();
+            MainLabelTitulo.Text = $"Jogo da Velha {ObjPlayer.PlayerID}";
+            foreach (string port in ObjPlayer.GetPortNames()) MainComboBoxPorta.Items.Add(port); // Adiciona as portas na ComboBox
+            if (MainComboBoxPorta.Items.Count <= 0) MainComboBoxPorta.Items.Add("Sem portas");
+            SecondsToRestart = 8; // Como são dois jogadores, cada um deles vai descontar uma unidade desta variável
+            PlayHistory = new PointHistoric[3, 3];
         }
 
         private void MainComboBoxPorta_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,8 +37,8 @@ namespace ImagemMonocromatica
             try
             {
                 MainLabelStatus.Text = "Conectando...";
-                CurrentPlayer.PortName = port;
-                CurrentPlayer.Open();
+                ObjPlayer.PortName = port;
+                ObjPlayer.Open();
                 MainLabelStatus.Text = "Conectado";
                 MainComboBoxPorta.Enabled = false;
                 SetTimers();
@@ -53,218 +49,247 @@ namespace ImagemMonocromatica
             
         }
 
-        private void TimerVerifyUSB_Tick(object sender, EventArgs e)
-        {
-            string Data = CurrentPlayer.ReadExisting();
-
-            /*if (CurrentPlayer == IdPlayer) ReleaseButtons();
-            else LockButtons();
-
-            if (Data.Length != 0) ChangeCurrentPlayer();
-
-            switch (Data) {
-                case "x_11": UpdateScreen(MainButton11, XImage); break;
-                case "o_11": UpdateScreen(MainButton11, OImage); break;
-                case "x_12": UpdateScreen(MainButton12, XImage); break;
-                case "o_12": UpdateScreen(MainButton12, OImage); break;
-                case "x_13": UpdateScreen(MainButton13, XImage); break;
-                case "o_13": UpdateScreen(MainButton13, OImage); break;
-                case "x_21": UpdateScreen(MainButton21, XImage); break;
-                case "o_21": UpdateScreen(MainButton21, OImage); break;
-                case "x_22": UpdateScreen(MainButton22, XImage); break;
-                case "o_22": UpdateScreen(MainButton22, OImage); break;
-                case "x_23": UpdateScreen(MainButton23, XImage); break;
-                case "o_23": UpdateScreen(MainButton23, OImage); break;
-                case "x_31": UpdateScreen(MainButton31, XImage); break;
-                case "o_31": UpdateScreen(MainButton31, OImage); break;
-                case "x_32": UpdateScreen(MainButton32, XImage); break;
-                case "o_32": UpdateScreen(MainButton32, OImage); break;
-                case "x_33": UpdateScreen(MainButton33, XImage); break;
-                case "o_33": UpdateScreen(MainButton33, OImage); break;
-            }*/
-        }
-
-        private void TimerHandShakeUSB_Tick(object sender, EventArgs e)
-        {
-            string Data = CurrentPlayer.ReadExisting(); // Lê a porta USB
-            
-            CurrentPlayer.WriteLine($"{CurrentPlayer.ID}_");
-            CurrentPlayer.DiscardOutBuffer();
-            CurrentPlayer.DiscardInBuffer();
-            if (Data.Length == 0) CurrentPlayer.Write(CurrentPlayer.ID); // Caso não tenha nada, escreve o Host atual na porta
-
-            while (Data.Length != 0 && StandbyPlayer == null) StandbyPlayer = new Player(Data.Split('_')[0]); // ID se encontra na primeira posição
-            
-            if (StandbyPlayer != null) TimerHandShakeUSB.Stop();
-
-
-            
-
-
-           /* if (Data.Contains("finish")) // Captura a flag de finalização do HandShake
-            {
-                // A última informação, contém o jogador de espera na primeira posição 
-                StandbyPlayer = (CurrentPlayer.GetPlayerByID(Data.Split('_')[0]) != null) ? CurrentPlayer : StandbyPlayer ; 
-                MainLabelTitulo.Text += $" ({CurrentPlayer.ID} - X)";
-                CurrentPlayer.Letter = 'x';
-                TimerHandShakeUSB.Stop();
-                TimerVerifyUSB.Start();
-            } */
-
-            /* // O jogador que receber as informações primeiro, começará o jogo
-             // Quando isso acontecer será mandado a informação do jogador em espera
-             // Junto com a flag "_finish", informando que o handshake terminou
-             if (CurrentPlayer != null && StandbyPlayer != null) // if (CurrentPlayer != null && StandbyPlayer != null && (CurrentPlayer.ID != IdPlayer)) 
-             {
-                 ObjConnector.Write($"{StandbyPlayer}_finish");
-                 MainLabelTitulo.Text += $" ({CurrentPlayer.ID} - O)";
-                 CurrentPlayer.Letter = 'o';
-                 TimerHandShakeUSB.Stop();
-                 TimerVerifyUSB.Start();
-             }*/
-
-            /*while (StandbyPlayer == null)
-            {
-                Data = CurrentPlayer.ReadExisting(); // Lê novamente a porta
-                if (Data.Length != 0)               // Caso exista algo, atribui a leitura para StandbyPlayer e para o timer
-                {
-                    StandbyPlayer = (CurrentPlayer.ID == Data) ? CurrentPlayer : StandbyPlayer;
-                    ChangeCurrentPlayer();  // Troca os jogadores para que quem carregou as informações primeiro, comece jogando
-                }
-            }*/
-        }
-
-
-        private void TimerWin_Tick(object sender, EventArgs e)
-        {
-            Button[] Buttons = { MainButton11, MainButton12, MainButton13,
-                                 MainButton21, MainButton22, MainButton23,
-                                 MainButton31, MainButton32, MainButton33 };
-            int SecondsToDisplay = SecondsToRestart / 2;
-            LockButtons();
-            TimerWin.Interval = 1000;
-            if (WinnerPlayer == null)
-            {
-                MainLabelStatus.Text = $"Empate (Reiniciando em {SecondsToDisplay})";
-            }
-            else
-            {
-                MainLabelStatus.Text = $"\" {WinnerPlayer} \" GANHOU !!! (Reiniciando em {SecondsToDisplay})";
-            }
-            SecondsToRestart--;
-
-            if (SecondsToDisplay == 0)
-            {
-                foreach (Button Button_P in Buttons) Button_P.Image = null;
-                if (MainLabelTitulo.Text.Contains('X'))
-                {
-                    MainLabelTitulo.Text = $" ({CurrentPlayer.GetPlayerByLetter('o')} - O)";
-                    CurrentPlayer.GetPlayerByLetter('o').Letter = 'o';
-                }
-                else if (MainLabelTitulo.Text.Contains('O'))
-                {
-                    MainLabelTitulo.Text = $" ({CurrentPlayer.GetPlayerByLetter('x')} - X)";
-                    CurrentPlayer.GetPlayerByLetter('o').Letter = 'x';
-                }
-
-                if (WinnerPlayer == CurrentPlayer.GetPlayerByLetter('x') && MainLabelTitulo.Text.Contains('O')) ChangeCurrentPlayer();
-                else if (WinnerPlayer == CurrentPlayer.GetPlayerByLetter('x') && MainLabelTitulo.Text.Contains('X')) ChangeCurrentPlayer();
-                ChangeCurrentPlayer();
-                MainLabelStatus.Text = "Conectado";
-                SecondsToRestart = 8;
-                TimerWin.Stop();
-                TimerVerifyUSB.Start();
-            }
-        }
-
-        // ########################################### PROCEDURES ######################################################
-
-        private void VerifyWin()
-        {
-            Image[,] Images = { { MainButton11.Image, MainButton12.Image, MainButton13.Image },
-                                 { MainButton21.Image, MainButton22.Image, MainButton23.Image },
-                                 { MainButton31.Image, MainButton32.Image, MainButton33.Image } };
-            int[] HorizontalAccumulator = new int[3];
-            int[] VerticalAccumulator = new int[3];
-            int DiagPrincipalAccumulator = 0;
-            int DiagSecundaryAccumulator = 0;
-
-            for (int i = 0; i <= 2; i++)
-            {
-                for (int j = 0; j <= 2; j++)
-                {
-                    if (Images[i, j] != null)
-                    {
-                        if (i + j == 2) DiagSecundaryAccumulator += (Images[i, j] == CurrentPlayer.Image) ? CurrentPlayer.Value : StandbyPlayer.Value;
-                        if (i == j) DiagPrincipalAccumulator += (Images[i, j] == CurrentPlayer.Image) ? CurrentPlayer.Value : StandbyPlayer.Value;
-                        HorizontalAccumulator[i] += (Images[i, j] == CurrentPlayer.Image) ? CurrentPlayer.Value : StandbyPlayer.Value;
-                        //VerticalAccumulator[i] += (Images[j, i] == XImage) ? XValue : OValue;
-                    }
-                }
-
-                /*if (HorizontalAccumulator.Sum() == 3*XValue || VerticalAccumulator.Sum() == 3*XValue || DiagPrincipalAccumulator == 3*XValue || DiagSecundaryAccumulator == 3*XValue)
-                {
-                    WinnerPlayer = (CurrentPlayer.Letter == 'x') ? CurrentPlayer : StandbyPlayer;
-                    TimerVerifyUSB.Stop();
-                    TimerWin.Start();
-                } else if ((HorizontalAccumulator.Sum() == 3 * OValue || VerticalAccumulator.Sum() == 3 * OValue || DiagPrincipalAccumulator == 3 * OValue || DiagSecundaryAccumulator == 3 * OValue))
-                {
-                    WinnerPlayer = (CurrentPlayer.Letter == 'o') ? CurrentPlayer : StandbyPlayer;
-                    TimerVerifyUSB.Stop();
-                    TimerWin.Start();
-                } else if ((CurrentPlayer.NumberOfPlays + StandbyPlayer.Value) == 9)
-                {
-                    WinnerPlayer = null; // Empate
-                    TimerVerifyUSB.Stop();
-                    TimerWin.Start();
-                } else
-                {*/
-                    HorizontalAccumulator = new int[3];
-                    VerticalAccumulator = new int[3];
-                //}
-            }
-        }
-
-        private void AddPortsToCombo()
-        {
-            foreach (string port in CurrentPlayer.GetPortNames()) MainComboBoxPorta.Items.Add(port);
-            if (MainComboBoxPorta.Items.Count <= 0) MainComboBoxPorta.Items.Add("Sem portas");
-        }
-
-        private void UpdateScreen(Button Button_P, Image Image_P)
-        {
-            Button_P.Image = Image_P;
-            Button_P.Enabled = false;
-            VerifyWin();
-        }
+        // ############################################# MÉTODOS PERIÓDICOS ######################################################
 
         private void MakeMove(Button Button_P, string Position) // Realiza uma jogada
         {
-            Button_P.Image = (CurrentPlayer.Letter == 'x') ? CurrentPlayer.Image : StandbyPlayer.Image;
-            CurrentPlayer.Write($"{CurrentPlayer.Image}_{Position}");
-            ChangeCurrentPlayer();
-            VerifyWin();
+            string[] Index = Position.Split('_');
+            int i = int.Parse(Index[0]) - 1;
+            int j = int.Parse(Index[1]) - 1;
+
+            PlayHistory[i, j] = new PointHistoric(ObjPlayer.PlayerValue, i, j);
+
+            Console.WriteLine($"ID: {ObjPlayer.PlayerID} Opponent: {ObjPlayer.OpponentID} Turn: {ObjPlayer.Turn} Moves: {ObjPlayer.NumberOfPlays}");
+            
+            for (i = 0; i < 3; i++)
+            {
+                for (j = 0; j < 3; j++)
+                {
+                    Console.Write($"{PlayHistory[i, j].Value} ");
+                }
+                Console.WriteLine();
+            }
+
+            ObjPlayer.Write($"{ObjPlayer.PlayerLetter}_{Position}");
+            ObjPlayer.NumberOfPlays++;
+            ObjPlayer.ChangeTurn();
+            Button_P.Image = ObjPlayer.PlayerImage;
+            CheckAccumulators();
         }
 
-        private void ChangeCurrentPlayer()
+        private void UpdateScreen(Button Button_P, Image Image_P, int i, int j)
         {
-            Player AuxPlayer;
-
-            AuxPlayer = CurrentPlayer;
-            CurrentPlayer = StandbyPlayer;
-            StandbyPlayer = AuxPlayer;
+            PlayHistory[i - 1, j - 1] = new PointHistoric(ObjPlayer.OpponentValue, i - 1, j - 1);
+            Button_P.Image = Image_P;
+            Button_P.Enabled = false;
+            ObjPlayer.ChangeTurn();
         }
+
+        private void CheckAccumulators()
+        {
+            int[] Horizontal = new int[3];
+            int[] Vertical = new int[3];
+            int DiagPrincipal = 0;
+            int DiagSecundary = 0;
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (i + j == 2) DiagSecundary += PlayHistory[i, j].Value;
+                    if (i == j) DiagPrincipal += PlayHistory[i, j].Value;
+                    Horizontal[i] += PlayHistory[i, j].Value;
+                    Vertical[i] += PlayHistory[j, i].Value;
+                }
+                CheckWinner(DiagPrincipal, DiagSecundary, Horizontal.Sum(), Vertical.Sum());
+                Horizontal = new int[3];
+                Vertical = new int[3];
+            }
+        }
+
+        public void CheckWinner(int DiagPrincipal, int DiagSecundary, int Horizontal, int Vertical)
+        {
+            if (ObjPlayer.NumberOfPlays == 5) // Empate
+            {
+                ObjPlayer.Winner = 'e';
+                ObjPlayer.Write($"_e_tie");
+                LockButtons();
+                TimerVerifyUSB.Stop();
+                TimerWin.Start();
+            }
+            else if (DiagPrincipal == ObjPlayer.WinValue || DiagSecundary == ObjPlayer.WinValue || Horizontal == ObjPlayer.WinValue || Vertical == ObjPlayer.WinValue)
+            {
+                ObjPlayer.Winner = ObjPlayer.PlayerLetter;
+                ObjPlayer.Write($"{ObjPlayer.PlayerLetter}_end");
+                LockButtons();
+                TimerVerifyUSB.Stop();
+                TimerWin.Start();
+            }
+        }
+
+        private void ResetGame() // Esse método está errado !!!
+        {
+            Button[] Buttons = { MainButton11, MainButton12, MainButton13,
+                                 MainButton21, MainButton22, MainButton23,
+                                 MainButton31, MainButton32, MainButton33};
+
+            foreach (Button Button_P in Buttons) Button_P.Image = null; // Reseta as imagens
+            PlayHistory = new PointHistoric[3, 3];
+            SecondsToRestart = 0;
+
+
+            if (ObjPlayer.Winner == 'e') // Chama-se gambeta ! Se der empate x começa jogando, pq to cansado demais pra pensar em algo melhor
+            {
+                if (ObjPlayer.PlayerLetter == 'x')
+                {
+                    ObjPlayer.Turn = true;
+                    ReleaseButtons();
+                }
+                else if (ObjPlayer.OpponentLetter == ObjPlayer.Winner)
+                {
+                    ObjPlayer.Turn = false;
+                    LockButtons();
+                }
+            } else
+            {
+                if (ObjPlayer.PlayerLetter == ObjPlayer.Winner)
+                {
+                    ObjPlayer.Turn = false;
+                    LockButtons();
+                }
+                else if (ObjPlayer.OpponentLetter == ObjPlayer.Winner)
+                {
+                    ObjPlayer.Turn = true;
+                    ReleaseButtons();
+                }
+            }
+
+            ObjPlayer.NumberOfPlays = 0;
+            ObjPlayer.Winner = new char();
+            ObjPlayer.DiscardInBuffer();
+            ObjPlayer.DiscardOutBuffer();
+            TimerVerifyUSB.Start();
+        }
+
+        // ############################################# TIMERS ######################################################
 
         private void SetTimers()
         {
             TimerVerifyUSB.Interval = 100;
             TimerVerifyUSB.Tick += TimerVerifyUSB_Tick; // Timer usado para verificar eventos nos botões
-            TimerHandShakeUSB.Interval = 1000;
+            TimerHandShakeUSB.Interval = 100;
             TimerHandShakeUSB.Tick += TimerHandShakeUSB_Tick; // 
-            TimerWin.Interval = 10;
+            TimerWin.Interval = 1000;
             TimerWin.Tick += TimerWin_Tick;
             TimerHandShakeUSB.Start(); // Iniciar o timer até ocorrer uma comunicação
         }
+
+        private void TimerHandShakeUSB_Tick(object sender, EventArgs e)
+        {
+            string Data;
+
+            ObjPlayer.Write($"{ObjPlayer.PlayerID}");
+
+            while (string.IsNullOrEmpty(ObjPlayer.OpponentID))
+            {
+                Data = ObjPlayer.ReadExisting();
+                if (!Data.Contains("start"))
+                {
+                    ObjPlayer.SetPlayer(Data, 'x', 'o', 'x', 'o', 5, 1, true);
+                    MainLabelTitulo.Text = "Jogo da Velha - X";
+                    ReleaseButtons();
+                }
+                // É utilizado o split, pois o último que carrega as informações na porta usb 
+                // Possui a flag "start", portanto é necessário separar para pegar o ID do 
+                // Primeiro a carregar que se encontra na primeira posição
+                else
+                {
+                    ObjPlayer.SetPlayer(Data.Split('_')[0], 'o', 'x', 'o', 'x', 1, 5, false);
+                    MainLabelTitulo.Text = "Jogo da Velha - O";
+                }
+            }
+
+            ObjPlayer.Write($"{ObjPlayer.PlayerID}_start");
+            TimerHandShakeUSB.Stop();
+            TimerVerifyUSB.Start();
+        }
+
+        private void TimerVerifyUSB_Tick(object sender, EventArgs e)
+        {
+            string Data = ObjPlayer.ReadExisting();
+            ObjPlayer.DiscardInBuffer();
+            ObjPlayer.DiscardOutBuffer();
+            if (ObjPlayer.Turn) ReleaseButtons();
+            else LockButtons();
+
+            if (Data.Contains("end"))
+            {
+                ObjPlayer.Winner = Convert.ToChar(Data.Split('_')[0]); // Vencedor está na primeira posição
+                TimerVerifyUSB.Stop();
+                TimerWin.Start();
+            } else if (Data.Contains("tie"))
+            {
+                string[] DataArray = Data.Split('_');
+                Button[,] Buttons = { { MainButton11, MainButton12, MainButton13 },
+                                      { MainButton21, MainButton22, MainButton23 },
+                                      { MainButton31, MainButton32, MainButton33} };
+
+                for (int i = 0; i < 3; i++) // Encontrar o último botão sem imagem
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (PlayHistory[i, j].Value == 0) Buttons[i, j].Image = ObjPlayer.OpponentImage;
+                    }
+                }
+
+                ObjPlayer.Winner = Convert.ToChar(DataArray[DataArray.Length - 2]); // Informação de empate está na penultima posição
+                TimerVerifyUSB.Stop();
+                TimerWin.Start();
+            }
+            switch (Data)
+            {
+                case "x_1_1": UpdateScreen(MainButton11, ObjPlayer.OpponentImage, 1, 1); break;
+                case "o_1_1": UpdateScreen(MainButton11, ObjPlayer.OpponentImage, 1, 1); break;
+                case "x_1_2": UpdateScreen(MainButton12, ObjPlayer.OpponentImage, 1, 2); break;
+                case "o_1_2": UpdateScreen(MainButton12, ObjPlayer.OpponentImage, 1, 2); break;
+                case "x_1_3": UpdateScreen(MainButton13, ObjPlayer.OpponentImage, 1, 3); break;
+                case "o_1_3": UpdateScreen(MainButton13, ObjPlayer.OpponentImage, 1, 3); break;
+                case "x_2_1": UpdateScreen(MainButton21, ObjPlayer.OpponentImage, 2, 1); break;
+                case "o_2_1": UpdateScreen(MainButton21, ObjPlayer.OpponentImage, 2, 1); break;
+                case "x_2_2": UpdateScreen(MainButton22, ObjPlayer.OpponentImage, 2, 2); break;
+                case "o_2_2": UpdateScreen(MainButton22, ObjPlayer.OpponentImage, 2, 3); break;
+                case "x_2_3": UpdateScreen(MainButton23, ObjPlayer.OpponentImage, 2, 3); break;
+                case "o_2_3": UpdateScreen(MainButton23, ObjPlayer.OpponentImage, 2, 3); break;
+                case "x_3_1": UpdateScreen(MainButton31, ObjPlayer.OpponentImage, 3, 1); break;
+                case "o_3_1": UpdateScreen(MainButton31, ObjPlayer.OpponentImage, 3, 1); break;
+                case "x_3_2": UpdateScreen(MainButton32, ObjPlayer.OpponentImage, 3, 2); break;
+                case "o_3_2": UpdateScreen(MainButton32, ObjPlayer.OpponentImage, 3, 2); break;
+                case "x_3_3": UpdateScreen(MainButton33, ObjPlayer.OpponentImage, 3, 3); break;
+                case "o_3_3": UpdateScreen(MainButton33, ObjPlayer.OpponentImage, 3, 3); break;
+            }
+        }
+
+        private void TimerWin_Tick(object sender, EventArgs e)
+        {
+            int SecondsToDisplay = SecondsToRestart / 2;
+            if (ObjPlayer.Winner == 'e')
+            {
+                MainLabelStatus.Text = $"Empate (Reiniciando em {SecondsToDisplay})";
+            }
+            else
+            {
+                MainLabelStatus.Text = $"\" {char.ToUpper(ObjPlayer.Winner)} \" GANHOU !!! (Reiniciando em {SecondsToDisplay})";
+            }
+            SecondsToRestart--;
+
+            if (SecondsToDisplay == 0)
+            {
+                TimerWin.Stop();
+                ResetGame();
+            }
+        }
+
+        // ########################################### FUNÇÕES DOS BOTÕES ######################################################
 
         private void ReleaseButtons() 
         {
@@ -283,52 +308,54 @@ namespace ImagemMonocromatica
             foreach (Button Button_P in Buttons) Button_P.Enabled = false;
         }
 
+        // ########################################### CONTROLE DOS BOTÕES ######################################################
+
         private void MainButton11_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton11, "11");
+            MakeMove(MainButton11, "1_1");
         }
 
         private void MainButton12_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton12, "12");
+            MakeMove(MainButton12, "1_2");
         }
 
         private void MainButton13_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton13, "13");
+            MakeMove(MainButton13, "1_3");
         }
 
         private void MainButton21_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton21, "21");
+            MakeMove(MainButton21, "2_1");
         }
 
         private void MainButton22_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton22, "22");
+            MakeMove(MainButton22, "2_2");
         }
 
         private void MainButton23_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton23, "23");
+            MakeMove(MainButton23, "2_3");
         }
 
         private void MainButton31_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton31, "31");
+            MakeMove(MainButton31, "3_1");
         }
 
         private void MainButton32_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton32, "32");
+            MakeMove(MainButton32, "3_2");
         }
 
         private void MainButton33_Click(object sender, EventArgs e)
         {
-            MakeMove(MainButton33, "33");
+            MakeMove(MainButton33, "3_3");
         }
 
-        // ########################################### CONTROL ######################################################
+        // ########################################### CONTROLE DA JANELA ######################################################
 
         private void MainButtonExit_Click(object sender, EventArgs e)
         {
