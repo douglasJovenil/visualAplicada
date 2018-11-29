@@ -23,7 +23,7 @@ namespace ImagemMonocromatica
         {
             ObjWindow = new Window(Height, Width);
             ObjPlayer = new Player();
-            MainLabelTitulo.Text = $"Jogo da Velha {ObjPlayer.PlayerID}";
+            MainLabelTitulo.Text = $"Jogo da Velha ({ObjPlayer.PlayerID})";
             foreach (string port in ObjPlayer.GetPortNames()) MainComboBoxPorta.Items.Add(port); // Adiciona as portas na ComboBox
             if (MainComboBoxPorta.Items.Count <= 0) MainComboBoxPorta.Items.Add("Sem portas");
             SecondsToRestart = 8; // Como são dois jogadores, cada um deles vai descontar uma unidade desta variável
@@ -57,24 +57,17 @@ namespace ImagemMonocromatica
             int i = int.Parse(Index[0]) - 1;
             int j = int.Parse(Index[1]) - 1;
 
-            PlayHistory[i, j] = new PointHistoric(ObjPlayer.PlayerValue, i, j);
+            TimerTimeOut.Stop(); // Após a jogada, começa a contar o timeout
+            TimerTimeOut.Start();
 
-            Console.WriteLine($"ID: {ObjPlayer.PlayerID} Opponent: {ObjPlayer.OpponentID} Turn: {ObjPlayer.Turn} Moves: {ObjPlayer.NumberOfPlays}");
-            
-            for (i = 0; i < 3; i++)
-            {
-                for (j = 0; j < 3; j++)
-                {
-                    Console.Write($"{PlayHistory[i, j].Value} ");
-                }
-                Console.WriteLine();
-            }
+            PlayHistory[i, j] = new PointHistoric(ObjPlayer.PlayerValue, i, j);
 
             ObjPlayer.Write($"{ObjPlayer.PlayerLetter}_{Position}");
             ObjPlayer.NumberOfPlays++;
             ObjPlayer.ChangeTurn();
             Button_P.Image = ObjPlayer.PlayerImage;
-            CheckAccumulators();
+            TimerVerifyAccumulators.Stop();
+            TimerVerifyAccumulators.Start();
         }
 
         private void UpdateScreen(Button Button_P, Image Image_P, int i, int j)
@@ -82,6 +75,8 @@ namespace ImagemMonocromatica
             PlayHistory[i - 1, j - 1] = new PointHistoric(ObjPlayer.OpponentValue, i - 1, j - 1);
             Button_P.Image = Image_P;
             Button_P.Enabled = false;
+            TimerVerifyAccumulators.Stop();
+            TimerVerifyAccumulators.Start();
             ObjPlayer.ChangeTurn();
         }
 
@@ -109,66 +104,44 @@ namespace ImagemMonocromatica
 
         public void CheckWinner(int DiagPrincipal, int DiagSecundary, int Horizontal, int Vertical)
         {
+
             if (ObjPlayer.NumberOfPlays == 5) // Empate
             {
                 ObjPlayer.Winner = 'e';
                 ObjPlayer.Write($"_e_tie");
-                LockButtons();
+                TimerVerifyAccumulators.Stop();
                 TimerVerifyUSB.Stop();
                 TimerWin.Start();
             }
-            else if (DiagPrincipal == ObjPlayer.WinValue || DiagSecundary == ObjPlayer.WinValue || Horizontal == ObjPlayer.WinValue || Vertical == ObjPlayer.WinValue)
+            else if (DiagPrincipal == ObjPlayer.PlayerWinValue || DiagSecundary == ObjPlayer.PlayerWinValue || Horizontal == ObjPlayer.PlayerWinValue || Vertical == ObjPlayer.PlayerWinValue)
             {
                 ObjPlayer.Winner = ObjPlayer.PlayerLetter;
                 ObjPlayer.Write($"{ObjPlayer.PlayerLetter}_end");
-                LockButtons();
+                PlayHistory = new PointHistoric[3, 3];
+                TimerVerifyAccumulators.Stop();
                 TimerVerifyUSB.Stop();
                 TimerWin.Start();
             }
         }
 
-        private void ResetGame() // Esse método está errado !!!
+        private void ResetGame() 
         {
             Button[] Buttons = { MainButton11, MainButton12, MainButton13,
                                  MainButton21, MainButton22, MainButton23,
                                  MainButton31, MainButton32, MainButton33};
 
-            foreach (Button Button_P in Buttons) Button_P.Image = null; // Reseta as imagens
+            ObjPlayer.ResetChangePlayer();
+            MainLabelTitulo.Text = $"Jogo da Velha ({ObjPlayer.PlayerID} - {char.ToUpper(ObjPlayer.PlayerLetter)})";
+            MainLabelStatus.Text = "Conectado";
+            foreach (Button Button_P in Buttons) Button_P.Image = null;
             PlayHistory = new PointHistoric[3, 3];
-            SecondsToRestart = 0;
+            SecondsToRestart = 8;
 
-
-            if (ObjPlayer.Winner == 'e') // Chama-se gambeta ! Se der empate x começa jogando, pq to cansado demais pra pensar em algo melhor
-            {
-                if (ObjPlayer.PlayerLetter == 'x')
-                {
-                    ObjPlayer.Turn = true;
-                    ReleaseButtons();
-                }
-                else if (ObjPlayer.OpponentLetter == ObjPlayer.Winner)
-                {
-                    ObjPlayer.Turn = false;
-                    LockButtons();
-                }
-            } else
-            {
-                if (ObjPlayer.PlayerLetter == ObjPlayer.Winner)
-                {
-                    ObjPlayer.Turn = false;
-                    LockButtons();
-                }
-                else if (ObjPlayer.OpponentLetter == ObjPlayer.Winner)
-                {
-                    ObjPlayer.Turn = true;
-                    ReleaseButtons();
-                }
-            }
-
-            ObjPlayer.NumberOfPlays = 0;
-            ObjPlayer.Winner = new char();
-            ObjPlayer.DiscardInBuffer();
-            ObjPlayer.DiscardOutBuffer();
+            if (ObjPlayer.PlayerLetter == 'x') ObjPlayer.Turn = true;
+            else if (ObjPlayer.PlayerLetter == 'o') ObjPlayer.Turn = false;
+    
             TimerVerifyUSB.Start();
+            TimerVerifyAccumulators.Start();
         }
 
         // ############################################# TIMERS ######################################################
@@ -181,7 +154,17 @@ namespace ImagemMonocromatica
             TimerHandShakeUSB.Tick += TimerHandShakeUSB_Tick; // 
             TimerWin.Interval = 1000;
             TimerWin.Tick += TimerWin_Tick;
+            TimerTimeOut.Interval = 600000; // 10 minutos
+            TimerTimeOut.Tick += TimerTimeOut_Tick;
+            TimerVerifyAccumulators.Interval = 100;
+            TimerVerifyAccumulators.Tick += TimerVerifyAccumulators_Tick;
+            TimerVerifyAccumulators.Start();
             TimerHandShakeUSB.Start(); // Iniciar o timer até ocorrer uma comunicação
+        }
+
+        private void TimerVerifyAccumulators_Tick(object sender, EventArgs e)
+        {
+            CheckAccumulators();
         }
 
         private void TimerHandShakeUSB_Tick(object sender, EventArgs e)
@@ -196,7 +179,7 @@ namespace ImagemMonocromatica
                 if (!Data.Contains("start"))
                 {
                     ObjPlayer.SetPlayer(Data, 'x', 'o', 'x', 'o', 5, 1, true);
-                    MainLabelTitulo.Text = "Jogo da Velha - X";
+                    MainLabelTitulo.Text = $"Jogo da Velha ({ObjPlayer.PlayerID} - X)";
                     ReleaseButtons();
                 }
                 // É utilizado o split, pois o último que carrega as informações na porta usb 
@@ -205,22 +188,47 @@ namespace ImagemMonocromatica
                 else
                 {
                     ObjPlayer.SetPlayer(Data.Split('_')[0], 'o', 'x', 'o', 'x', 1, 5, false);
-                    MainLabelTitulo.Text = "Jogo da Velha - O";
+                    MainLabelTitulo.Text = $"Jogo da Velha ({ObjPlayer.PlayerID} - O)";
                 }
             }
 
             ObjPlayer.Write($"{ObjPlayer.PlayerID}_start");
             TimerHandShakeUSB.Stop();
+            TimerTimeOut.Start();
             TimerVerifyUSB.Start();
         }
 
         private void TimerVerifyUSB_Tick(object sender, EventArgs e)
         {
             string Data = ObjPlayer.ReadExisting();
+
             ObjPlayer.DiscardInBuffer();
             ObjPlayer.DiscardOutBuffer();
             if (ObjPlayer.Turn) ReleaseButtons();
             else LockButtons();
+
+            switch (Data)
+            {
+                case "x_1_1": UpdateScreen(MainButton11, ObjPlayer.OpponentImage, 1, 1); break;
+                case "o_1_1": UpdateScreen(MainButton11, ObjPlayer.OpponentImage, 1, 1); break;
+                case "x_1_2": UpdateScreen(MainButton12, ObjPlayer.OpponentImage, 1, 2); break;
+                case "o_1_2": UpdateScreen(MainButton12, ObjPlayer.OpponentImage, 1, 2); break;
+                case "x_1_3": UpdateScreen(MainButton13, ObjPlayer.OpponentImage, 1, 3); break;
+                case "o_1_3": UpdateScreen(MainButton13, ObjPlayer.OpponentImage, 1, 3); break;
+                case "x_2_1": UpdateScreen(MainButton21, ObjPlayer.OpponentImage, 2, 1); break;
+                case "o_2_1": UpdateScreen(MainButton21, ObjPlayer.OpponentImage, 2, 1); break;
+                case "x_2_2": UpdateScreen(MainButton22, ObjPlayer.OpponentImage, 2, 2); break;
+                case "o_2_2": UpdateScreen(MainButton22, ObjPlayer.OpponentImage, 2, 3); break;
+                case "x_2_3": UpdateScreen(MainButton23, ObjPlayer.OpponentImage, 2, 3); break;
+                case "o_2_3": UpdateScreen(MainButton23, ObjPlayer.OpponentImage, 2, 3); break;
+                case "x_3_1": UpdateScreen(MainButton31, ObjPlayer.OpponentImage, 3, 1); break;
+                case "o_3_1": UpdateScreen(MainButton31, ObjPlayer.OpponentImage, 3, 1); break;
+                case "x_3_2": UpdateScreen(MainButton32, ObjPlayer.OpponentImage, 3, 2); break;
+                case "o_3_2": UpdateScreen(MainButton32, ObjPlayer.OpponentImage, 3, 2); break;
+                case "x_3_3": UpdateScreen(MainButton33, ObjPlayer.OpponentImage, 3, 3); break;
+                case "o_3_3": UpdateScreen(MainButton33, ObjPlayer.OpponentImage, 3, 3); break;
+            }
+
 
             if (Data.Contains("end"))
             {
@@ -246,31 +254,11 @@ namespace ImagemMonocromatica
                 TimerVerifyUSB.Stop();
                 TimerWin.Start();
             }
-            switch (Data)
-            {
-                case "x_1_1": UpdateScreen(MainButton11, ObjPlayer.OpponentImage, 1, 1); break;
-                case "o_1_1": UpdateScreen(MainButton11, ObjPlayer.OpponentImage, 1, 1); break;
-                case "x_1_2": UpdateScreen(MainButton12, ObjPlayer.OpponentImage, 1, 2); break;
-                case "o_1_2": UpdateScreen(MainButton12, ObjPlayer.OpponentImage, 1, 2); break;
-                case "x_1_3": UpdateScreen(MainButton13, ObjPlayer.OpponentImage, 1, 3); break;
-                case "o_1_3": UpdateScreen(MainButton13, ObjPlayer.OpponentImage, 1, 3); break;
-                case "x_2_1": UpdateScreen(MainButton21, ObjPlayer.OpponentImage, 2, 1); break;
-                case "o_2_1": UpdateScreen(MainButton21, ObjPlayer.OpponentImage, 2, 1); break;
-                case "x_2_2": UpdateScreen(MainButton22, ObjPlayer.OpponentImage, 2, 2); break;
-                case "o_2_2": UpdateScreen(MainButton22, ObjPlayer.OpponentImage, 2, 3); break;
-                case "x_2_3": UpdateScreen(MainButton23, ObjPlayer.OpponentImage, 2, 3); break;
-                case "o_2_3": UpdateScreen(MainButton23, ObjPlayer.OpponentImage, 2, 3); break;
-                case "x_3_1": UpdateScreen(MainButton31, ObjPlayer.OpponentImage, 3, 1); break;
-                case "o_3_1": UpdateScreen(MainButton31, ObjPlayer.OpponentImage, 3, 1); break;
-                case "x_3_2": UpdateScreen(MainButton32, ObjPlayer.OpponentImage, 3, 2); break;
-                case "o_3_2": UpdateScreen(MainButton32, ObjPlayer.OpponentImage, 3, 2); break;
-                case "x_3_3": UpdateScreen(MainButton33, ObjPlayer.OpponentImage, 3, 3); break;
-                case "o_3_3": UpdateScreen(MainButton33, ObjPlayer.OpponentImage, 3, 3); break;
-            }
         }
 
         private void TimerWin_Tick(object sender, EventArgs e)
         {
+            LockButtons();
             int SecondsToDisplay = SecondsToRestart / 2;
             if (ObjPlayer.Winner == 'e')
             {
@@ -287,6 +275,11 @@ namespace ImagemMonocromatica
                 TimerWin.Stop();
                 ResetGame();
             }
+        }
+
+        private void TimerTimeOut_Tick(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         // ########################################### FUNÇÕES DOS BOTÕES ######################################################

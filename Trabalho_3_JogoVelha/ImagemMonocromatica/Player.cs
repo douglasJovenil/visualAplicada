@@ -15,7 +15,8 @@ namespace ImagemMonocromatica
         public char OpponentLetter { get; set; }
         public int PlayerValue { get; set; }
         public int OpponentValue { get; set; }
-        public int WinValue { get; set; }
+        public int PlayerWinValue { get; set; }
+        public int OpponentWinValue { get; set; }
         public int NumberOfPlays;
         public bool Turn;
         public char Winner { get; set; }
@@ -37,7 +38,8 @@ namespace ImagemMonocromatica
             OpponentLetter = OpponetLetter_P;
             PlayerValue = PlayerValue_P;
             OpponentValue = OpponentValue_P;
-            WinValue = 3 * PlayerValue;
+            PlayerWinValue = 3 * PlayerValue;
+            OpponentWinValue = 3 * OpponentValue;
             Turn = Turn_P;
         }
 
@@ -55,6 +57,34 @@ namespace ImagemMonocromatica
         public new string[] GetPortNames()
         {
             return SerialPort.GetPortNames();
+        }
+
+        public void ResetChangePlayer()
+        {
+            char AuxLetter;
+            Bitmap AuxImage;
+            int AuxPlayerValue, AuxWinValue;
+
+            AuxLetter = PlayerLetter;
+            PlayerLetter = OpponentLetter;
+            OpponentLetter = AuxLetter;
+
+            AuxImage = PlayerImage;
+            PlayerImage = OpponentImage;
+            OpponentImage = AuxImage;
+
+            AuxPlayerValue = PlayerValue;
+            PlayerValue = OpponentValue;
+            OpponentValue = AuxPlayerValue;
+
+            AuxWinValue = PlayerWinValue;
+            PlayerWinValue = OpponentWinValue;
+            OpponentWinValue = AuxWinValue;
+
+            NumberOfPlays = 0;
+            Winner = new char();
+            //DiscardInBuffer();
+            //DiscardOutBuffer();
         }
     }
 }

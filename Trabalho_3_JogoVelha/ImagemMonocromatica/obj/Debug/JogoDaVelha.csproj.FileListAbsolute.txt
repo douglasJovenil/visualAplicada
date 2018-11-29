@@ -28,3 +28,13 @@ C:\Users\UCS\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\o
 C:\Users\UCS\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe.config
 C:\Users\UCS\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe
 C:\Users\UCS\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.pdb
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe.config
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.exe
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\bin\Debug\ImagemMonocromatica.pdb
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\obj\Debug\JogoDaVelha.csprojAssemblyReference.cache
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.MainForm.resources
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.Properties.Resources.resources
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\obj\Debug\JogoDaVelha.csproj.GenerateResource.cache
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\obj\Debug\JogoDaVelha.csproj.CoreCompileInputs.cache
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.exe
+C:\Users\djcsantos\Downloads\visualAplicada\Trabalho_3_JogoVelha\ImagemMonocromatica\obj\Debug\ImagemMonocromatica.pdb

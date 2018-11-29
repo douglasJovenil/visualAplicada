@@ -52,6 +52,8 @@
             this.TimerVerifyUSB = new System.Windows.Forms.Timer(this.components);
             this.TimerHandShakeUSB = new System.Windows.Forms.Timer(this.components);
             this.TimerWin = new System.Windows.Forms.Timer(this.components);
+            this.TimerTimeOut = new System.Windows.Forms.Timer(this.components);
+            this.TimerVerifyAccumulators = new System.Windows.Forms.Timer(this.components);
             this.MainPanelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBoxIcone)).BeginInit();
             this.MainPanelBottom.SuspendLayout();
@@ -325,6 +327,14 @@
             // 
             this.TimerWin.Tick += new System.EventHandler(this.TimerWin_Tick);
             // 
+            // TimerTimeOut
+            // 
+            this.TimerTimeOut.Tick += new System.EventHandler(this.TimerTimeOut_Tick);
+            // 
+            // TimerVerifyAccumulators
+            // 
+            this.TimerVerifyAccumulators.Tick += new System.EventHandler(this.TimerVerifyAccumulators_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,6 +394,8 @@
         private System.Windows.Forms.Timer TimerVerifyUSB;
         private System.Windows.Forms.Timer TimerHandShakeUSB;
         private System.Windows.Forms.Timer TimerWin;
+        private System.Windows.Forms.Timer TimerTimeOut;
+        private System.Windows.Forms.Timer TimerVerifyAccumulators;
     }
 }
 
